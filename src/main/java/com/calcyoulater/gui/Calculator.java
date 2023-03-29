@@ -10,6 +10,11 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.util.Locale;
 
+
+
+/*
+ * @author Joel Halkey
+ */
 public class Calculator extends JFrame {
     private JButton zeroButton;
     private JButton decimalButton;

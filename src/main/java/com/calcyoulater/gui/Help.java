@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Locale;
 
+/*
+ * @author Joel Halkey
+ */
 public class Help extends JFrame {
 
     public Help() {

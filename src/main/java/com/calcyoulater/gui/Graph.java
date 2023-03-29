@@ -7,6 +7,9 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 import java.awt.*;
 
+/*
+ * @author Joel Halkey
+ */
 public class Graph {
     private JPanel mainPanel;
     private JPanel containerPanel;
