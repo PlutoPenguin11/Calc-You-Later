@@ -59,95 +59,11 @@ public class Calculator extends JFrame {
     private JButton button1;
     private JPanel mainPanel;
     private History history = new History();
-
-
+    
     public Calculator() {
         $$$setupUI$$$();
         calculatorInit();
-
-        enterButton.addActionListener(e -> {
-            //TODO: Enter button functionality
-            //TODO: Add checks
-            Equation newEquation = new Equation(inputField.getText());
-            history.addEquation(newEquation);
-            Expression expression = newEquation.parse();
-            outputTextArea.setText(expression.calculate() + "");
-        });
-
-        homeButton.addActionListener(e -> {
-            (this).buttonPanel.setVisible(true);
-            //TODO: Home button functionality
-        });
-
-        graphButton.addActionListener(e -> {
-            //TODO: Graphing button functionality
-        });
-
-        statsButton.addActionListener(e -> {
-            (this).buttonPanel.setVisible(false);
-            //TODO: Stats button functionality
-        });
-
-        helpButton.addActionListener(e -> {
-            Help help = new Help();
-        });
-
-        equalsButton.addActionListener(e -> inputField.setText(inputField.getText() + "="));
-
-        decimalButton.addActionListener(e -> inputField.setText(inputField.getText() + "."));
-
-        zeroButton.addActionListener(e -> inputField.setText(inputField.getText() + "0"));
-
-        plusButton.addActionListener(e -> inputField.setText(inputField.getText() + "+"));
-
-        threeButton.addActionListener(e -> inputField.setText(inputField.getText() + "3"));
-
-        twoButton.addActionListener(e -> inputField.setText(inputField.getText() + "2"));
-
-        oneButton.addActionListener(e -> inputField.setText(inputField.getText() + "1"));
-
-        subtractButton.addActionListener(e -> inputField.setText(inputField.getText() + "-"));
-
-        sixButton.addActionListener(e -> inputField.setText(inputField.getText() + "6"));
-
-        fiveButton.addActionListener(e -> inputField.setText(inputField.getText() + "5"));
-
-        fourButton.addActionListener(e -> inputField.setText(inputField.getText() + "4"));
-
-        multiplicationButton.addActionListener(e -> inputField.setText(inputField.getText() + "*"));
-
-        nineButton.addActionListener(e -> inputField.setText(inputField.getText() + "9"));
-
-        eightButton.addActionListener(e -> inputField.setText(inputField.getText() + "8"));
-
-        sevenButton.addActionListener(e -> inputField.setText(inputField.getText() + "7"));
-
-        divisionButton.addActionListener(e -> inputField.setText(inputField.getText() + "/"));
-
-        rightParenthesisButton.addActionListener(e -> inputField.setText(inputField.getText() + ")"));
-
-        leftParenthesisButton.addActionListener(e -> inputField.setText(inputField.getText() + "("));
-
-        commaButton.addActionListener(e -> inputField.setText(inputField.getText() + ","));
-
-        caretButton.addActionListener(e -> inputField.setText(inputField.getText() + "^"));
-
-        tanButton.addActionListener(e -> inputField.setText(inputField.getText() + "tan("));
-
-        cosButton.addActionListener(e -> inputField.setText(inputField.getText() + "cos("));
-
-        sinButton.addActionListener(e -> inputField.setText(inputField.getText() + "sin("));
-
-        clearButton.addActionListener(e -> inputField.setText(""));
-
-        deleteButton.addActionListener(e -> {
-            if (inputField != null) inputField.setText(inputField.getText().replaceAll(".$", ""));
-        });
-
-    }
-
-    private void createUIComponents() {
-
+        actionListenerInit();
     }
 
     /**
@@ -352,6 +268,87 @@ public class Calculator extends JFrame {
         (this).setLocationRelativeTo(null);
         (this).setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         (this).setVisible(true);
+    }
+
+    public void actionListenerInit(){
+        enterButton.addActionListener(e -> {
+            //TODO: Enter button functionality
+            //TODO: Add checks
+            Equation newEquation = new Equation(inputField.getText());
+            history.addEquation(newEquation);
+            Expression expression = newEquation.parse();
+            outputTextArea.setText(expression.calculate() + "");
+        });
+
+        homeButton.addActionListener(e -> {
+            (this).buttonPanel.setVisible(true);
+            //TODO: Home button functionality
+        });
+
+        graphButton.addActionListener(e -> {
+            //TODO: Graphing button functionality
+        });
+
+        statsButton.addActionListener(e -> {
+            (this).buttonPanel.setVisible(false);
+            //TODO: Stats button functionality
+        });
+
+        helpButton.addActionListener(e -> {
+            Help help = new Help();
+        });
+
+        equalsButton.addActionListener(e -> inputField.setText(inputField.getText() + "="));
+
+        decimalButton.addActionListener(e -> inputField.setText(inputField.getText() + "."));
+
+        zeroButton.addActionListener(e -> inputField.setText(inputField.getText() + "0"));
+
+        plusButton.addActionListener(e -> inputField.setText(inputField.getText() + "+"));
+
+        threeButton.addActionListener(e -> inputField.setText(inputField.getText() + "3"));
+
+        twoButton.addActionListener(e -> inputField.setText(inputField.getText() + "2"));
+
+        oneButton.addActionListener(e -> inputField.setText(inputField.getText() + "1"));
+
+        subtractButton.addActionListener(e -> inputField.setText(inputField.getText() + "-"));
+
+        sixButton.addActionListener(e -> inputField.setText(inputField.getText() + "6"));
+
+        fiveButton.addActionListener(e -> inputField.setText(inputField.getText() + "5"));
+
+        fourButton.addActionListener(e -> inputField.setText(inputField.getText() + "4"));
+
+        multiplicationButton.addActionListener(e -> inputField.setText(inputField.getText() + "*"));
+
+        nineButton.addActionListener(e -> inputField.setText(inputField.getText() + "9"));
+
+        eightButton.addActionListener(e -> inputField.setText(inputField.getText() + "8"));
+
+        sevenButton.addActionListener(e -> inputField.setText(inputField.getText() + "7"));
+
+        divisionButton.addActionListener(e -> inputField.setText(inputField.getText() + "/"));
+
+        rightParenthesisButton.addActionListener(e -> inputField.setText(inputField.getText() + ")"));
+
+        leftParenthesisButton.addActionListener(e -> inputField.setText(inputField.getText() + "("));
+
+        commaButton.addActionListener(e -> inputField.setText(inputField.getText() + ","));
+
+        caretButton.addActionListener(e -> inputField.setText(inputField.getText() + "^"));
+
+        tanButton.addActionListener(e -> inputField.setText(inputField.getText() + "tan("));
+
+        cosButton.addActionListener(e -> inputField.setText(inputField.getText() + "cos("));
+
+        sinButton.addActionListener(e -> inputField.setText(inputField.getText() + "sin("));
+
+        clearButton.addActionListener(e -> inputField.setText(""));
+
+        deleteButton.addActionListener(e -> {
+            if (inputField != null) inputField.setText(inputField.getText().replaceAll(".$", ""));
+        });
     }
 
 }
