@@ -1,5 +1,7 @@
 package com.calcyoulater.storage;
 
+import org.mariuszgromada.math.mxparser.*;
+
 public class Equation {
     
     private String text;
@@ -14,8 +16,8 @@ public class Equation {
         return text;
     }
 
-    public void parse() {
-        //Parse with mXparser
+    public Expression parse() {
+        return new Expression(text);
     }
 
     public void setNext(Equation newNext) {
