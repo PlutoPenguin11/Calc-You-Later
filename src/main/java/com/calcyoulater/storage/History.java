@@ -56,7 +56,7 @@ public class History {
         current = current.prev == null ? current : current.prev;
     }
 
-    //Purely for testing
+    //For testing
     public Equation getHead() {
         return head;
     }

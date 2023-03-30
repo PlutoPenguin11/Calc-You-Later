@@ -1,12 +1,5 @@
 package com.calcyoulater;
 
-/*import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;*/
-
 import com.calcyoulater.working.Statistics;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
