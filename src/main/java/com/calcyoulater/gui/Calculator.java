@@ -9,7 +9,9 @@ import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.util.Locale;
-
+import org.mariuszgromada.math.mxparser.*;
+import com.calcyoulater.storage.Equation;
+import com.calcyoulater.storage.History;
 
 
 /*
@@ -56,6 +58,7 @@ public class Calculator extends JFrame {
     private JButton helpButton;
     private JButton button1;
     private JPanel mainPanel;
+    private History history = new History();
 
 
     public Calculator() {
@@ -64,6 +67,11 @@ public class Calculator extends JFrame {
 
         enterButton.addActionListener(e -> {
             //TODO: Enter button functionality
+            //TODO: Add checks
+            Equation newEquation = new Equation(inputField.getText());
+            history.addEquation(newEquation);
+            Expression expression = newEquation.parse();
+            outputTextArea.setText(expression.calculate() + "");
         });
 
         homeButton.addActionListener(e -> {
