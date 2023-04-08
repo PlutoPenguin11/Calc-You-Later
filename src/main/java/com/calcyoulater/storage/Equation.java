@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 import org.mariuszgromada.math.mxparser.*;
 
-public class Equation implements Serializable{
-    
+import java.text.DecimalFormat;
+
+public class Equation implements Serializable {
+
     private String text;
     protected Equation next;
     protected Equation prev;
@@ -18,15 +20,19 @@ public class Equation implements Serializable{
         return text;
     }
 
-    public Expression parse() {
-        return new Expression(text);
-    }
-
     public void setNext(Equation newNext) {
         next = newNext;
     }
 
     public void setPrev(Equation newPrev) {
         prev = newPrev;
+    }
+
+    public String parse() {
+        DecimalFormat df = new DecimalFormat("0.00000");
+        Expression expression = new Expression(text);
+        double num = expression.calculate();
+
+        return df.format(num);
     }
 }
