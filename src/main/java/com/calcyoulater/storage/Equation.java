@@ -32,7 +32,6 @@ public class Equation implements Serializable {
         DecimalFormat df = new DecimalFormat("0.00000");
         Expression expression = new Expression(text);
         double num = expression.calculate();
-
         return df.format(num);
     }
 }
