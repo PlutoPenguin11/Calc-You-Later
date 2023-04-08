@@ -18,7 +18,7 @@ public class HistoryTest {
 
     @BeforeEach
     public void setUp() {
-        history = new History();
+        history = History.instance();;
 
         string1 = "cos(45)";
         string2 = "1+3-2";
@@ -67,7 +67,7 @@ public class HistoryTest {
         assertEquals(newEquation, history.getCurrent());
         assertEquals(equation3, history.getPreviousEquation());
 
-        History history2 = new History();
+        History history2 = History.instance();;
         history2.addEquation(newEquation);
         assertEquals(newEquation, history2.getHead());
         assertEquals(newEquation, history2.getCurrent());
