@@ -82,9 +82,7 @@ public class Calculator extends JFrame {
                 default: 
 
             }
-
-        }
-        );
+        });
 
         homeButton.addActionListener(e -> {
             stateLabel.setText("            Home");
@@ -102,8 +100,7 @@ public class Calculator extends JFrame {
             //TODO: Graphing button functionality
             stateLabel.setText("            Statistics");
             this.state= "STATS";
-        }
-        );
+        });
 
         helpButton.addActionListener(e -> {
             Help help = new Help();     

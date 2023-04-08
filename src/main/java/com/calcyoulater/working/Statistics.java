@@ -150,8 +150,15 @@ public class Statistics {
         if(input == null || input.equals("")){
             return "Empty input";
         }
+        double inputArray[] = null;
+        try {
+            inputArray = parseString(input);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return "You entered an invalid expresion";
+        }
 
-        double inputArray[] = parseString(input);
+        
         double quartiles[] = quartiles(inputArray);
 
         return        "Sample size: " + count(inputArray) + "\n"
@@ -169,8 +176,12 @@ public class Statistics {
     private static double[] parseString(String input){
         String inputArray[] = input.split(",");
         double parsedArray[] = new double[inputArray.length];
-        for(int i = 0; i < inputArray.length; i ++){
-            parsedArray[i] = Double.valueOf(inputArray[i]);
+        try {
+            for(int i = 0; i < inputArray.length; i ++){
+                parsedArray[i] = Double.valueOf(inputArray[i]);
+            }
+        } catch (Exception e) {
+           throw new java.lang.NumberFormatException();
         }
 
         return parsedArray;
