@@ -12,12 +12,18 @@ public class Storage {
     private final static String PROGRAM_NAME = "CalcYouLater";
     private final static String HISTORY_FILE = "history.ser";
     private ArrayList<Equation> equations = new ArrayList<>();
+    private static Storage uniqueInstance;
 
-    public Storage() {
+    private Storage() {
         if (!folderExists()) {
             createAppDataFolder();
             createFile();
         }
+    }
+
+    public static Storage instance() {
+        if (uniqueInstance == null) uniqueInstance = new Storage();
+        return uniqueInstance;
     }
 
     public static void serialize(ArrayList<Equation> equations) {

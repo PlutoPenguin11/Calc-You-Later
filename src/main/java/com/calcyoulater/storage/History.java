@@ -5,9 +5,15 @@ public class History {
     private Equation head;
     private Equation current;
     private Equation tail;
+    private static History uniqueInstance;
 
-    public History() {
+    private History() {
 
+    }
+
+    public static History instance() {
+        if(uniqueInstance == null) uniqueInstance = new History();
+        return uniqueInstance;
     }
 
     public Equation getPreviousEquation() {

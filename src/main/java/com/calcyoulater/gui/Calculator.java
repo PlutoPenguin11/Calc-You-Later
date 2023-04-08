@@ -59,7 +59,7 @@ public class Calculator extends JFrame {
     private JButton helpButton;
     private JButton button1;
     private JPanel mainPanel;
-    private History history = new History();
+    private History history = History.instance();
 
 
     public Calculator() {
