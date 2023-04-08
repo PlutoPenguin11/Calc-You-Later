@@ -9,7 +9,10 @@ import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.util.Locale;
-
+import org.mariuszgromada.math.mxparser.*;
+import com.calcyoulater.storage.Equation;
+import com.calcyoulater.storage.History;
+    
 public class Calculator extends JFrame {
     private JButton zeroButton;
     private JButton decimalButton;
@@ -50,14 +53,16 @@ public class Calculator extends JFrame {
     private JPanel mainPanel;
     private JButton prevButton;
     private JPanel graphingContainerPanel;
-    private JTextArea textArea1;
     private JPanel windowPanel;
 
 
     public Calculator() {
         $$$setupUI$$$();
         calculatorInit();
+        actionListenerInit();
+    }
 
+    private void actionListenerInit() {
         enterButton.addActionListener(e -> {
 
         });
@@ -142,12 +147,6 @@ public class Calculator extends JFrame {
         deleteButton.addActionListener(e -> {
             if (inputField != null) inputField.setText(inputField.getText().replaceAll(".$", ""));
         });
-
-
-    }
-
-    private void createUIComponents() {
-
     }
 
     /**
@@ -297,8 +296,6 @@ public class Calculator extends JFrame {
         graphingContainerPanel = new JPanel();
         graphingContainerPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(graphingContainerPanel, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        textArea1 = new JTextArea();
-        graphingContainerPanel.add(textArea1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(300, -1), new Dimension(300, -1), new Dimension(300, -1), 0, false));
         final Spacer spacer3 = new Spacer();
         mainPanel.add(spacer3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
@@ -357,8 +354,5 @@ public class Calculator extends JFrame {
         (this).setVisible(true);
     }
 
-    public void hideAll() {
-
-    }
 
 }
