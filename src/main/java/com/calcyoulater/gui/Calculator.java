@@ -12,7 +12,7 @@ import java.util.Locale;
 import org.mariuszgromada.math.mxparser.*;
 import com.calcyoulater.storage.Equation;
 import com.calcyoulater.storage.History;
-    
+
 public class Calculator extends JFrame {
     private JButton zeroButton;
     private JButton decimalButton;
@@ -49,11 +49,11 @@ public class Calculator extends JFrame {
     private JButton graphButton;
     private JButton statsButton;
     private JButton helpButton;
-    private JButton previousButton;
-    private JPanel mainPanel;
     private JButton prevButton;
+    private JPanel mainPanel;
     private JPanel graphingContainerPanel;
     private JPanel windowPanel;
+    private History history = History.instance();
 
 
     public Calculator() {
@@ -63,34 +63,36 @@ public class Calculator extends JFrame {
     }
 
     private void actionListenerInit() {
-        enterButton.addActionListener(e -> {
+        enterButton.addActionListener(e -> 
+            inputField.setText(inputField.getText() + "=")
+        );
 
-        });
-
-        homeButton.addActionListener(e -> {
-            (this).buttonPanel.setVisible(true);
+        homeButton.addActionListener(e -> 
+            (this).buttonPanel.setVisible(true)
             //TODO: Home button functionality
-        });
+        );
 
-        graphButton.addActionListener(e -> {
+        graphButton.addActionListener(e -> 
             //TODO: Graphing button functionality
-        });
+            inputField.setText(inputField.getText() + "=")
+        );
 
-        statsButton.addActionListener(e -> {
-            (this).buttonPanel.setVisible(false);
+        statsButton.addActionListener(e -> 
+            (this).buttonPanel.setVisible(false)
             //TODO: Stats button functionality
-        });
+        );
 
         helpButton.addActionListener(e -> {
-            Help help = new Help();
+            Help help = new Help();     
         });
 
-        previousButton.addActionListener(e -> {
-
-        });
+        prevButton.addActionListener(e -> 
+            inputField.setText(inputField.getText() + "=")
+        );
 
         nextButton.addActionListener(e -> {
             //TODO: Next button functionality
+            inputField.setText(inputField.getText() + "=");
         });
 
         equalsButton.addActionListener(e -> inputField.setText(inputField.getText() + "="));
