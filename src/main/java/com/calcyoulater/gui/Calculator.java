@@ -14,6 +14,7 @@ import com.calcyoulater.storage.Equation;
 import com.calcyoulater.storage.History;
 
 
+
 /*
  * @author Joel Halkey
  */
@@ -59,7 +60,8 @@ public class Calculator extends JFrame {
     private JButton button1;
     private JPanel mainPanel;
     private History history = new History();
-    
+
+
     public Calculator() {
         $$$setupUI$$$();
         calculatorInit();
@@ -272,12 +274,7 @@ public class Calculator extends JFrame {
 
     public void actionListenerInit(){
         enterButton.addActionListener(e -> {
-            //TODO: Enter button functionality
-            //TODO: Add checks
-            Equation newEquation = new Equation(inputField.getText());
-            history.addEquation(newEquation);
-            Expression expression = newEquation.parse();
-            outputTextArea.setText(expression.calculate() + "");
+            
         });
 
         homeButton.addActionListener(e -> {
