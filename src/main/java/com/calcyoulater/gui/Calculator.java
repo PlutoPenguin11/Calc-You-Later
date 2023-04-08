@@ -13,8 +13,6 @@ import org.mariuszgromada.math.mxparser.*;
 import com.calcyoulater.storage.Equation;
 import com.calcyoulater.storage.History;
 
-
-
 /*
  * @author Joel Halkey
  */
