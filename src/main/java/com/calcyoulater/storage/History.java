@@ -1,7 +1,7 @@
 package com.calcyoulater.storage;
 
 public class History {
-    
+
     private Equation head;
     private Equation current;
     private Equation tail;
@@ -13,7 +13,8 @@ public class History {
     }
 
     public static History instance() {
-        if(uniqueInstance == null) uniqueInstance = new History();
+        if (uniqueInstance == null)
+            uniqueInstance = new History();
         return uniqueInstance;
     }
 
@@ -34,7 +35,7 @@ public class History {
     }
 
     public void addEquation(Equation newEquation) {
-        if(head == null) {
+        if (head == null) {
             head = current = tail = newEquation;
         } else {
             newEquation.prev = tail;
@@ -45,14 +46,20 @@ public class History {
     public void deleteSelected() {
         int flag = 2;
 
-        if (current.prev != null) current.prev.next = current.next;
-        else flag--;
+        if (current.prev != null)
+            current.prev.next = current.next;
+        else
+            flag--;
 
-        if (current.next != null) current.next.prev = current.prev;
-        else flag--;
+        if (current.next != null)
+            current.next.prev = current.prev;
+        else
+            flag--;
 
-        if (flag != 0) getPreviousEquation();
-        else head = current = null;
+        if (flag != 0)
+            getPreviousEquation();
+        else
+            head = current = null;
     }
 
     public void moveToNext() {
@@ -63,7 +70,7 @@ public class History {
         current = current.prev == null ? current : current.prev;
     }
 
-    //For testing
+    // For testing
     public Equation getHead() {
         return head;
     }

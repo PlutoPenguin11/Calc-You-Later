@@ -23,7 +23,7 @@ public class Storage {
     public static void serialize(ArrayList<Equation> equations) {
         if (folderExists() && fileExists()) {
             try {
-                FileOutputStream fileOut = new FileOutputStream(getFolderPath()+HISTORY_FILE);
+                FileOutputStream fileOut = new FileOutputStream(getFolderPath() + HISTORY_FILE);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(equations);
                 out.close();
@@ -35,7 +35,7 @@ public class Storage {
             createAppDataFolder();
             createFile();
             try {
-                FileOutputStream fileOut = new FileOutputStream(getFolderPath()+HISTORY_FILE);
+                FileOutputStream fileOut = new FileOutputStream(getFolderPath() + HISTORY_FILE);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(equations);
                 out.close();
@@ -50,11 +50,11 @@ public class Storage {
     public static ArrayList<Equation> deserialize() {
         ArrayList<Equation> temp = new ArrayList<>();
 
-        try{
+        try {
             FileInputStream filePath = new FileInputStream(getFolderPath() + HISTORY_FILE);
             ObjectInputStream in = new ObjectInputStream(filePath);
             temp = (ArrayList<Equation>) in.readObject();
-        }catch(IOException | ClassNotFoundException e){
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 

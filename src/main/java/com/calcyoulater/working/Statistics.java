@@ -146,42 +146,42 @@ public class Statistics {
         return i + 1;
     }
 
-    public static String getSummary(String input){
-        if(input == null || input.equals("")){
+    public static String getSummary(String input) {
+        if (input == null || input.equals("")) {
             return "Empty input";
         }
+
         double inputArray[] = null;
+
         try {
             inputArray = parseString(input);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
             return "You entered an invalid expresion";
         }
 
-        
         double quartiles[] = quartiles(inputArray);
 
-        return        "Sample size: " + count(inputArray) + "\n"
-                    + "Minimum: " + quartiles[0] + "\n"
-                    + "Q1: " + quartiles[1]+ "\n"
-                    + "Median: " + quartiles[2]+ "\n"
-                    + "Q3: " + quartiles[3] + "\n"
-                    + "Maximum: " + quartiles[4] + "\n"
-                    + "Mean: " + mean(inputArray) + "\n"
-                    + "Standard deviation " + stddev(inputArray) + "\n"
-                    + "Variance " + variance(inputArray);
+        return "Sample size: " + count(inputArray) + "\n"
+                + "Minimum: " + quartiles[0] + "\n"
+                + "Q1: " + quartiles[1] + "\n"
+                + "Median: " + quartiles[2] + "\n"
+                + "Q3: " + quartiles[3] + "\n"
+                + "Maximum: " + quartiles[4] + "\n"
+                + "Mean: " + mean(inputArray) + "\n"
+                + "Standard deviation " + stddev(inputArray) + "\n"
+                + "Variance " + variance(inputArray);
 
     }
 
-    private static double[] parseString(String input){
+    private static double[] parseString(String input) {
         String inputArray[] = input.split(",");
         double parsedArray[] = new double[inputArray.length];
         try {
-            for(int i = 0; i < inputArray.length; i ++){
+            for (int i = 0; i < inputArray.length; i++) {
                 parsedArray[i] = Double.valueOf(inputArray[i]);
             }
         } catch (Exception e) {
-           throw new java.lang.NumberFormatException();
+            throw new java.lang.NumberFormatException();
         }
 
         return parsedArray;

@@ -5,8 +5,8 @@ import java.text.DecimalFormat;
 
 import org.mariuszgromada.math.mxparser.*;
 
-public class Equation implements Serializable{
-    
+public class Equation implements Serializable {
+
     private String text;
     protected Equation next;
     protected Equation prev;
