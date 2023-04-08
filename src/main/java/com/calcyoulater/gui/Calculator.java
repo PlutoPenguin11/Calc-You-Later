@@ -12,7 +12,7 @@ import java.util.Locale;
 import org.mariuszgromada.math.mxparser.*;
 import com.calcyoulater.storage.Equation;
 import com.calcyoulater.storage.History;
-import com.calcyoulater.working.Parser;
+
 
 
 /*
@@ -274,12 +274,7 @@ public class Calculator extends JFrame {
 
     public void actionListenerInit(){
         enterButton.addActionListener(e -> {
-            //TODO: Enter button functionality
-            //TODO: Add checks
-            Parser p = new Parser(inputField.getText());
-            Equation equation = new Equation(inputField.getText());
-            history.addEquation(equation);
-            outputTextArea.setText(p.parseInput());
+            
         });
 
         homeButton.addActionListener(e -> {
