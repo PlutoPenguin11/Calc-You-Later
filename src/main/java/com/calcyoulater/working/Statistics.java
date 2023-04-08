@@ -145,4 +145,34 @@ public class Statistics {
 
         return i + 1;
     }
+
+    public static String getSummary(String input){
+        if(input == null || input.equals("")){
+            return "Empty input";
+        }
+
+        double inputArray[] = parseString(input);
+        double quartiles[] = quartiles(inputArray);
+
+        return        "Sample size: " + count(inputArray) + "\n"
+                    + "Minimum: " + quartiles[0] + "\n"
+                    + "Q1: " + quartiles[1]+ "\n"
+                    + "Median: " + quartiles[2]+ "\n"
+                    + "Q3: " + quartiles[3] + "\n"
+                    + "Maximum: " + quartiles[4] + "\n"
+                    + "Mean: " + mean(inputArray) + "\n"
+                    + "Standard deviation " + stddev(inputArray) + "\n"
+                    + "Variance " + variance(inputArray);
+
+    }
+
+    private static double[] parseString(String input){
+        String inputArray[] = input.split(",");
+        double parsedArray[] = new double[inputArray.length];
+        for(int i = 0; i < inputArray.length; i ++){
+            parsedArray[i] = Double.valueOf(inputArray[i]);
+        }
+
+        return parsedArray;
+    }
 }
