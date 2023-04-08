@@ -6,8 +6,15 @@ public class History {
     private Equation current;
     private Equation tail;
 
-    public History() {
+    private static History uniqueInstance;
 
+    private History() {
+
+    }
+
+    public static History instance() {
+        if(uniqueInstance == null) uniqueInstance = new History();
+        return uniqueInstance;
     }
 
     public Equation getPreviousEquation() {
