@@ -9,15 +9,7 @@ import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.util.Locale;
-import org.mariuszgromada.math.mxparser.*;
-import com.calcyoulater.storage.Equation;
-import com.calcyoulater.storage.History;
 
-
-
-/*
- * @author Joel Halkey
- */
 public class Calculator extends JFrame {
     private JButton zeroButton;
     private JButton decimalButton;
@@ -43,29 +35,119 @@ public class Calculator extends JFrame {
     private JButton multiplicationButton;
     private JButton divisionButton;
     private JButton caretButton;
-    private JButton button26;
+    private JButton nextButton;
     private JButton deleteButton;
     private JButton clearButton;
     private JTextArea outputTextArea;
-    private JPanel containerPanel;
-    private JPanel graphPanel;
-    private JPanel outputPanel;
+    private JPanel calculatorPanel;
     private JPanel buttonPanel;
     private JTextField inputField;
-    private JTextArea textArea1;
     private JButton homeButton;
     private JButton graphButton;
     private JButton statsButton;
     private JButton helpButton;
-    private JButton button1;
+    private JButton previousButton;
     private JPanel mainPanel;
-    private History history = History.instance();
+    private JButton prevButton;
+    private JPanel graphingContainerPanel;
+    private JTextArea textArea1;
+    private JPanel windowPanel;
 
 
     public Calculator() {
         $$$setupUI$$$();
         calculatorInit();
-        actionListenerInit();
+
+        enterButton.addActionListener(e -> {
+
+        });
+
+        homeButton.addActionListener(e -> {
+            (this).buttonPanel.setVisible(true);
+            //TODO: Home button functionality
+        });
+
+        graphButton.addActionListener(e -> {
+            //TODO: Graphing button functionality
+        });
+
+        statsButton.addActionListener(e -> {
+            (this).buttonPanel.setVisible(false);
+            //TODO: Stats button functionality
+        });
+
+        helpButton.addActionListener(e -> {
+            Help help = new Help();
+        });
+
+        previousButton.addActionListener(e -> {
+
+        });
+
+        nextButton.addActionListener(e -> {
+            //TODO: Next button functionality
+        });
+
+        equalsButton.addActionListener(e -> inputField.setText(inputField.getText() + "="));
+
+        decimalButton.addActionListener(e -> inputField.setText(inputField.getText() + "."));
+
+        zeroButton.addActionListener(e -> inputField.setText(inputField.getText() + "0"));
+
+        plusButton.addActionListener(e -> inputField.setText(inputField.getText() + "+"));
+
+        threeButton.addActionListener(e -> inputField.setText(inputField.getText() + "3"));
+
+        twoButton.addActionListener(e -> inputField.setText(inputField.getText() + "2"));
+
+        oneButton.addActionListener(e -> inputField.setText(inputField.getText() + "1"));
+
+        subtractButton.addActionListener(e -> inputField.setText(inputField.getText() + "-"));
+
+        sixButton.addActionListener(e -> inputField.setText(inputField.getText() + "6"));
+
+        fiveButton.addActionListener(e -> inputField.setText(inputField.getText() + "5"));
+
+        fourButton.addActionListener(e -> inputField.setText(inputField.getText() + "4"));
+
+        multiplicationButton.addActionListener(e -> inputField.setText(inputField.getText() + "*"));
+
+        nineButton.addActionListener(e -> inputField.setText(inputField.getText() + "9"));
+
+        eightButton.addActionListener(e -> inputField.setText(inputField.getText() + "8"));
+
+        sevenButton.addActionListener(e -> inputField.setText(inputField.getText() + "7"));
+
+        divisionButton.addActionListener(e -> inputField.setText(inputField.getText() + "/"));
+
+        rightParenthesisButton.addActionListener(e -> inputField.setText(inputField.getText() + ")"));
+
+        leftParenthesisButton.addActionListener(e -> inputField.setText(inputField.getText() + "("));
+
+        commaButton.addActionListener(e -> inputField.setText(inputField.getText() + ","));
+
+        caretButton.addActionListener(e -> inputField.setText(inputField.getText() + "^"));
+
+        tanButton.addActionListener(e -> inputField.setText(inputField.getText() + "tan("));
+
+        cosButton.addActionListener(e -> inputField.setText(inputField.getText() + "cos("));
+
+        sinButton.addActionListener(e -> inputField.setText(inputField.getText() + "sin("));
+
+        clearButton.addActionListener(e -> {
+            inputField.setText("");
+            outputTextArea.setText("");
+        });
+
+        deleteButton.addActionListener(e -> {
+            if (inputField != null) inputField.setText(inputField.getText().replaceAll(".$", ""));
+        });
+
+
+    }
+
+    private void createUIComponents() {
+
     }
 
     /**
@@ -76,44 +158,25 @@ public class Calculator extends JFrame {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
+        windowPanel = new JPanel();
+        windowPanel.setLayout(new GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayoutManager(3, 3, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.setLayout(new GridLayoutManager(3, 4, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.setAutoscrolls(false);
         mainPanel.setMaximumSize(new Dimension(1000, 700));
         mainPanel.setPreferredSize(new Dimension(1000, 700));
-        containerPanel = new JPanel();
-        containerPanel.setLayout(new GridLayoutManager(6, 3, new Insets(0, 0, 0, 0), -1, -1));
-        containerPanel.setMaximumSize(new Dimension(1000, 700));
-        containerPanel.setOpaque(true);
-        containerPanel.setVisible(true);
-        mainPanel.add(containerPanel, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        final Spacer spacer1 = new Spacer();
-        containerPanel.add(spacer1, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        final Spacer spacer2 = new Spacer();
-        containerPanel.add(spacer2, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final Spacer spacer3 = new Spacer();
-        containerPanel.add(spacer3, new GridConstraints(0, 1, 3, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        graphPanel = new JPanel();
-        graphPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        containerPanel.add(graphPanel, new GridConstraints(0, 0, 3, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        textArea1 = new JTextArea();
-        textArea1.setEditable(false);
-        textArea1.setEnabled(false);
-        Font textArea1Font = this.$$$getFont$$$("SansSerif", Font.BOLD, 12, textArea1.getFont());
-        if (textArea1Font != null) textArea1.setFont(textArea1Font);
-        graphPanel.add(textArea1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
-        outputPanel = new JPanel();
-        outputPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        containerPanel.add(outputPanel, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        outputTextArea = new JTextArea();
-        Font outputTextAreaFont = this.$$$getFont$$$("SansSerif", Font.BOLD, 12, outputTextArea.getFont());
-        if (outputTextAreaFont != null) outputTextArea.setFont(outputTextAreaFont);
-        outputPanel.add(outputTextArea, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        windowPanel.add(mainPanel, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        calculatorPanel = new JPanel();
+        calculatorPanel.setLayout(new GridLayoutManager(6, 1, new Insets(0, 0, 0, 0), -1, -1));
+        calculatorPanel.setMaximumSize(new Dimension(1000, 700));
+        calculatorPanel.setOpaque(true);
+        calculatorPanel.setVisible(true);
+        mainPanel.add(calculatorPanel, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayoutManager(7, 4, new Insets(0, 0, 0, 0), -1, -1));
         buttonPanel.setEnabled(true);
         buttonPanel.setVisible(true);
-        containerPanel.add(buttonPanel, new GridConstraints(5, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        calculatorPanel.add(buttonPanel, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(344, 244), null, 0, false));
         zeroButton = new JButton();
         zeroButton.setText("0");
         buttonPanel.add(zeroButton, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -183,9 +246,9 @@ public class Calculator extends JFrame {
         caretButton = new JButton();
         caretButton.setText("^");
         buttonPanel.add(caretButton, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        button26 = new JButton();
-        button26.setText("Button");
-        buttonPanel.add(button26, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        nextButton = new JButton();
+        nextButton.setText("next");
+        buttonPanel.add(nextButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         deleteButton = new JButton();
         deleteButton.setText("delete");
         buttonPanel.add(deleteButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -195,21 +258,19 @@ public class Calculator extends JFrame {
         equalsButton = new JButton();
         equalsButton.setText("=");
         buttonPanel.add(equalsButton, new GridConstraints(6, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        button1 = new JButton();
-        button1.setText("Button");
-        buttonPanel.add(button1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer4 = new Spacer();
-        containerPanel.add(spacer4, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        prevButton = new JButton();
+        prevButton.setText("prev");
+        buttonPanel.add(prevButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         inputField = new JTextField();
         Font inputFieldFont = this.$$$getFont$$$("SansSerif", Font.BOLD, 12, inputField.getFont());
         if (inputFieldFont != null) inputField.setFont(inputFieldFont);
-        containerPanel.add(inputField, new GridConstraints(0, 2, 3, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        calculatorPanel.add(inputField, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(344, 30), null, 0, false));
         final JToolBar toolBar1 = new JToolBar();
         toolBar1.setFloatable(false);
         toolBar1.setOrientation(0);
         toolBar1.setRollover(false);
         toolBar1.putClientProperty("JToolBar.isRollover", Boolean.FALSE);
-        containerPanel.add(toolBar1, new GridConstraints(4, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 20), null, 0, false));
+        calculatorPanel.add(toolBar1, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(344, 20), null, 0, false));
         homeButton = new JButton();
         homeButton.setText("Home");
         toolBar1.add(homeButton);
@@ -224,14 +285,38 @@ public class Calculator extends JFrame {
         helpButton.setDoubleBuffered(false);
         helpButton.setText("Help");
         toolBar1.add(helpButton);
+        outputTextArea = new JTextArea();
+        outputTextArea.setEditable(true);
+        Font outputTextAreaFont = this.$$$getFont$$$("SansSerif", Font.BOLD, 12, outputTextArea.getFont());
+        if (outputTextAreaFont != null) outputTextArea.setFont(outputTextAreaFont);
+        calculatorPanel.add(outputTextArea, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(344, 50), null, 0, false));
+        final Spacer spacer1 = new Spacer();
+        calculatorPanel.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(344, 14), null, 0, false));
+        final Spacer spacer2 = new Spacer();
+        calculatorPanel.add(spacer2, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(344, 19), null, 0, false));
+        graphingContainerPanel = new JPanel();
+        graphingContainerPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.add(graphingContainerPanel, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        textArea1 = new JTextArea();
+        graphingContainerPanel.add(textArea1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(300, -1), new Dimension(300, -1), new Dimension(300, -1), 0, false));
+        final Spacer spacer3 = new Spacer();
+        mainPanel.add(spacer3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer4 = new Spacer();
+        mainPanel.add(spacer4, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer5 = new Spacer();
-        mainPanel.add(spacer5, new GridConstraints(0, 2, 2, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        mainPanel.add(spacer5, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer6 = new Spacer();
-        mainPanel.add(spacer6, new GridConstraints(0, 0, 2, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        mainPanel.add(spacer6, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer7 = new Spacer();
-        mainPanel.add(spacer7, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        mainPanel.add(spacer7, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer8 = new Spacer();
-        mainPanel.add(spacer8, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        windowPanel.add(spacer8, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        final Spacer spacer9 = new Spacer();
+        windowPanel.add(spacer9, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        final Spacer spacer10 = new Spacer();
+        windowPanel.add(spacer10, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        final Spacer spacer11 = new Spacer();
+        windowPanel.add(spacer11, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
     }
 
     /**
@@ -260,92 +345,20 @@ public class Calculator extends JFrame {
      * @noinspection ALL
      */
     public JComponent $$$getRootComponent$$$() {
-        return mainPanel;
+        return windowPanel;
     }
 
     public void calculatorInit() {
         (this).setTitle("Calc-You-Later!");
-        (this).setContentPane(this.mainPanel);
-        (this).setSize(550, 410);
+        (this).setContentPane(this.windowPanel);
+        (this).setSize(700, 500);
         (this).setLocationRelativeTo(null);
         (this).setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         (this).setVisible(true);
     }
 
-    public void actionListenerInit(){
-        enterButton.addActionListener(e -> {
-            
-        });
+    public void hideAll() {
 
-        homeButton.addActionListener(e -> {
-            (this).buttonPanel.setVisible(true);
-            //TODO: Home button functionality
-        });
-
-        graphButton.addActionListener(e -> {
-            //TODO: Graphing button functionality
-        });
-
-        statsButton.addActionListener(e -> {
-            (this).buttonPanel.setVisible(false);
-            //TODO: Stats button functionality
-        });
-
-        helpButton.addActionListener(e -> {
-            Help help = new Help();
-        });
-
-        equalsButton.addActionListener(e -> inputField.setText(inputField.getText() + "="));
-
-        decimalButton.addActionListener(e -> inputField.setText(inputField.getText() + "."));
-
-        zeroButton.addActionListener(e -> inputField.setText(inputField.getText() + "0"));
-
-        plusButton.addActionListener(e -> inputField.setText(inputField.getText() + "+"));
-
-        threeButton.addActionListener(e -> inputField.setText(inputField.getText() + "3"));
-
-        twoButton.addActionListener(e -> inputField.setText(inputField.getText() + "2"));
-
-        oneButton.addActionListener(e -> inputField.setText(inputField.getText() + "1"));
-
-        subtractButton.addActionListener(e -> inputField.setText(inputField.getText() + "-"));
-
-        sixButton.addActionListener(e -> inputField.setText(inputField.getText() + "6"));
-
-        fiveButton.addActionListener(e -> inputField.setText(inputField.getText() + "5"));
-
-        fourButton.addActionListener(e -> inputField.setText(inputField.getText() + "4"));
-
-        multiplicationButton.addActionListener(e -> inputField.setText(inputField.getText() + "*"));
-
-        nineButton.addActionListener(e -> inputField.setText(inputField.getText() + "9"));
-
-        eightButton.addActionListener(e -> inputField.setText(inputField.getText() + "8"));
-
-        sevenButton.addActionListener(e -> inputField.setText(inputField.getText() + "7"));
-
-        divisionButton.addActionListener(e -> inputField.setText(inputField.getText() + "/"));
-
-        rightParenthesisButton.addActionListener(e -> inputField.setText(inputField.getText() + ")"));
-
-        leftParenthesisButton.addActionListener(e -> inputField.setText(inputField.getText() + "("));
-
-        commaButton.addActionListener(e -> inputField.setText(inputField.getText() + ","));
-
-        caretButton.addActionListener(e -> inputField.setText(inputField.getText() + "^"));
-
-        tanButton.addActionListener(e -> inputField.setText(inputField.getText() + "tan("));
-
-        cosButton.addActionListener(e -> inputField.setText(inputField.getText() + "cos("));
-
-        sinButton.addActionListener(e -> inputField.setText(inputField.getText() + "sin("));
-
-        clearButton.addActionListener(e -> inputField.setText(""));
-
-        deleteButton.addActionListener(e -> {
-            if (inputField != null) inputField.setText(inputField.getText().replaceAll(".$", ""));
-        });
     }
 
 }
