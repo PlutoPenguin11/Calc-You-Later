@@ -71,6 +71,7 @@ public class Calculator extends JFrame {
             switch (this.state) {
                 case "HOME":
                     Equation eq = new Equation(inputField.getText());
+                    //If string is not empty, adds to history
                     if(eq.getNode().length() > 0)
                         history.addEquation(eq);
                     outputTextArea.setText(eq.parse());
@@ -112,6 +113,7 @@ public class Calculator extends JFrame {
         });
 
         nextButton.addActionListener(e -> {
+            //Checks and only shows next node if currently "viewing" a history node
             if (history.moveToNext())
                 inputField.setText(history.selectEquation());
         });
@@ -165,6 +167,7 @@ public class Calculator extends JFrame {
         clearButton.addActionListener(e -> {
             inputField.setText("");
             outputTextArea.setText("");
+            //Clear moves back to most recent node
             history.goToTail();
         });
 

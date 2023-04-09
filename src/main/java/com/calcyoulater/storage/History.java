@@ -8,8 +8,9 @@ public class History {
 
     private static History uniqueInstance;
 
+    //Uses singleton design pattern
     private History() {
-        tail = new Equation("");
+        tail = new Equation(null);
     }
 
     public static History instance() {
@@ -35,9 +36,13 @@ public class History {
     }
 
     public void addEquation(Equation newEquation) {
+        //If adding the first equation to the history
         if (head == null) {
+            //All pointers on the only valuable node
+            //Remember tail is jsut the endcap. tail.prev is the "convantional" tail
             head = current = tail.prev = newEquation;
         } else {
+            //Sandwiches new node between previous newest equation, and the endcap
             newEquation.prev = tail.prev;
             current = tail.prev = tail.prev.next = newEquation;
         }
@@ -64,6 +69,7 @@ public class History {
 
     public Boolean moveToNext() {
         Boolean changed = false;
+        //If at the most recent equation, node doesn't change and method returns false
         if (current.next != null) {
             current = current.next;
             changed = true;
@@ -75,7 +81,7 @@ public class History {
         current = current.prev == null ? current : current.prev;
     }
 
-    // For testing
+    // For testing //
     public Equation getHead() {
         return head;
     }
@@ -85,6 +91,7 @@ public class History {
     }
 
     public Equation getTail() {
+        //Returns tail.prev, as tail is just an empty endcap (for the moveToPrev method)
         return tail.prev;
     }
 }
