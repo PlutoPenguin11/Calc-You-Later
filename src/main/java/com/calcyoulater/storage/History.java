@@ -39,7 +39,7 @@ public class History {
         //If adding the first equation to the history
         if (head == null) {
             //All pointers on the only valuable node
-            //Remember tail is jsut the endcap. tail.prev is the "convantional" tail
+            //Remember: tail is just the endcap. tail.prev is the "conventional" tail
             head = current = tail.prev = newEquation;
         } else {
             //Sandwiches new node between previous newest equation, and the endcap
@@ -91,7 +91,7 @@ public class History {
     }
 
     public Equation getTail() {
-        //Returns tail.prev, as tail is just an empty endcap (for the moveToPrev method)
+        //Returns tail.prev, as tail is just an empty endcap (for the moveToPrev() method)
         return tail.prev;
     }
 }
