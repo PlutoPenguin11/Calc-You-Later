@@ -2,9 +2,9 @@ package com.calcyoulater.storage;
 
 public class History {
 
-    private Equation head;
-    private Equation current;
-    private Equation tail;
+    private static Equation head;
+    private static Equation current;
+    private static Equation tail;
 
     private static History uniqueInstance;
 
@@ -18,23 +18,23 @@ public class History {
         return uniqueInstance;
     }
 
-    public Equation getPreviousEquation() {
+    public static Equation getPreviousEquation() {
         return current = current.prev;
     }
 
-    public String selectEquation() {
+    public static String selectEquation() {
         return current.getNode();
     }
 
-    public void goToHead() {
+    public static void goToHead() {
         current = head;
     }
 
-    public void goToTail() {
+    public static void goToTail() {
         current = tail;
     }
 
-    public void addEquation(Equation newEquation) {
+    public static void addEquation(Equation newEquation) {
         if (head == null) {
             head = current = tail = newEquation;
         } else {
@@ -43,7 +43,7 @@ public class History {
         }
     }
 
-    public void deleteSelected() {
+    public static void deleteSelected() {
         int flag = 2;
 
         if (current.prev != null)
@@ -62,24 +62,24 @@ public class History {
             head = current = null;
     }
 
-    public void moveToNext() {
+    public static void moveToNext() {
         current = current.next == null ? current : current.next;
     }
 
-    public void moveToPrev() {
+    public static void moveToPrev() {
         current = current.prev == null ? current : current.prev;
     }
 
     // For testing
-    public Equation getHead() {
+    public static Equation getHead() {
         return head;
     }
 
-    public Equation getCurrent() {
+    public static Equation getCurrent() {
         return current;
     }
 
-    public Equation getTail() {
+    public static Equation getTail() {
         return tail;
     }
 }

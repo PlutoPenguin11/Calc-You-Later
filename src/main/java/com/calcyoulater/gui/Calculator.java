@@ -71,6 +71,7 @@ public class Calculator extends JFrame {
             switch (this.state) {
                 case "HOME":
                     Equation eq = new Equation(inputField.getText());
+                    history.addEquation(eq);
                     outputTextArea.setText(eq.parse());
                     break;
                 case "GRAPH":
@@ -104,11 +105,14 @@ public class Calculator extends JFrame {
             Help help = new Help();
         });
 
-        prevButton.addActionListener(e -> inputField.setText(inputField.getText() + "prevButtonHit"));
+        prevButton.addActionListener(e -> {
+            history.moveToPrev();
+            inputField.setText(history.selectEquation());
+        });
 
         nextButton.addActionListener(e -> {
-            // TODO: Next button functionality
-            inputField.setText(inputField.getText() + "nextButtonHit");
+            history.moveToNext();
+            inputField.setText(history.selectEquation());
         });
 
         equalsButton.addActionListener(e -> inputField.setText(inputField.getText() + "="));
@@ -160,6 +164,7 @@ public class Calculator extends JFrame {
         clearButton.addActionListener(e -> {
             inputField.setText("");
             outputTextArea.setText("");
+            history.goToTail();
         });
 
         deleteButton.addActionListener(e -> {
