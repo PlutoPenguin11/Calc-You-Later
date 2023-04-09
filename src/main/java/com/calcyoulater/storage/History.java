@@ -18,23 +18,23 @@ public class History {
         return uniqueInstance;
     }
 
-    public static Equation getPreviousEquation() {
+    public Equation getPreviousEquation() {
         return current = current.prev;
     }
 
-    public static String selectEquation() {
+    public String selectEquation() {
         return current.getNode();
     }
 
-    public static void goToHead() {
+    public void goToHead() {
         current = head;
     }
 
-    public static void goToTail() {
+    public void goToTail() {
         current = tail;
     }
 
-    public static void addEquation(Equation newEquation) {
+    public void addEquation(Equation newEquation) {
         if (head == null) {
             head = current = tail = newEquation;
         } else {
@@ -43,7 +43,7 @@ public class History {
         }
     }
 
-    public static void deleteSelected() {
+    public void deleteSelected() {
         int flag = 2;
 
         if (current.prev != null)
@@ -62,24 +62,24 @@ public class History {
             head = current = null;
     }
 
-    public static void moveToNext() {
+    public void moveToNext() {
         current = current.next == null ? current : current.next;
     }
 
-    public static void moveToPrev() {
+    public void moveToPrev() {
         current = current.prev == null ? current : current.prev;
     }
 
     // For testing
-    public static Equation getHead() {
+    public Equation getHead() {
         return head;
     }
 
-    public static Equation getCurrent() {
+    public Equation getCurrent() {
         return current;
     }
 
-    public static Equation getTail() {
+    public Equation getTail() {
         return tail;
     }
 }
