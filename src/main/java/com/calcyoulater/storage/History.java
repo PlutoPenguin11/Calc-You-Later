@@ -9,7 +9,7 @@ public class History {
     private static History uniqueInstance;
 
     private History() {
-
+        tail = new Equation("");
     }
 
     public static History instance() {
@@ -36,10 +36,10 @@ public class History {
 
     public void addEquation(Equation newEquation) {
         if (head == null) {
-            head = current = tail = newEquation;
+            head = current = tail.prev = newEquation;
         } else {
-            newEquation.prev = tail;
-            current = tail = tail.next = newEquation;
+            newEquation.prev = tail.prev;
+            current = tail.prev = tail.prev.next = newEquation;
         }
     }
 
@@ -62,8 +62,13 @@ public class History {
             head = current = null;
     }
 
-    public void moveToNext() {
-        current = current.next == null ? current : current.next;
+    public Boolean moveToNext() {
+        Boolean changed = false;
+        if (current.next != null) {
+            current = current.next;
+            changed = true;
+        }
+        return changed;
     }
 
     public void moveToPrev() {
@@ -80,6 +85,6 @@ public class History {
     }
 
     public Equation getTail() {
-        return tail;
+        return tail.prev;
     }
 }

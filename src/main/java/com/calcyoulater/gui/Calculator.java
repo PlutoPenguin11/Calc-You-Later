@@ -71,7 +71,8 @@ public class Calculator extends JFrame {
             switch (this.state) {
                 case "HOME":
                     Equation eq = new Equation(inputField.getText());
-                    history.addEquation(eq);
+                    if(eq.getNode().length() > 0)
+                        history.addEquation(eq);
                     outputTextArea.setText(eq.parse());
                     break;
                 case "GRAPH":
@@ -111,8 +112,8 @@ public class Calculator extends JFrame {
         });
 
         nextButton.addActionListener(e -> {
-            history.moveToNext();
-            inputField.setText(history.selectEquation());
+            if (history.moveToNext())
+                inputField.setText(history.selectEquation());
         });
 
         equalsButton.addActionListener(e -> inputField.setText(inputField.getText() + "="));
