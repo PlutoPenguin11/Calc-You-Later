@@ -104,7 +104,7 @@ public class Calculator extends JFrame {
         });
 
         helpButton.addActionListener(e -> {
-            Help help = new Help();
+            Help help = Help.instance();
         });
 
         prevButton.addActionListener(e -> {
