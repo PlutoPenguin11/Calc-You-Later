@@ -13,6 +13,7 @@ import com.calcyoulater.storage.Equation;
 import com.calcyoulater.storage.History;
 import com.calcyoulater.storage.Storage;
 import com.calcyoulater.working.Statistics;
+import java.util.ArrayList;
 
 public class Calculator extends JFrame {
     private JButton zeroButton;
