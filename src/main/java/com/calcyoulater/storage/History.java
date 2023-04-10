@@ -2,14 +2,14 @@ package com.calcyoulater.storage;
 
 public class History {
 
-    private static Equation head;
     private static Equation current;
     private static Equation tail;
 
     private static History uniqueInstance;
 
+    // Uses singleton design pattern
     private History() {
-
+        tail = new Equation(null);
     }
 
     public static History instance() {
@@ -18,32 +18,33 @@ public class History {
         return uniqueInstance;
     }
 
-    public static Equation getPreviousEquation() {
+    public Equation getPreviousEquation() {
         return current = current.prev;
     }
 
-    public static String selectEquation() {
+    public String selectEquation() {
         return current.getNode();
     }
 
-    public static void goToHead() {
-        current = head;
-    }
-
-    public static void goToTail() {
+    public void goToTail() {
         current = tail;
     }
 
-    public static void addEquation(Equation newEquation) {
-        if (head == null) {
-            head = current = tail = newEquation;
+    public void addEquation(Equation newEquation) {
+        // If adding the first equation to the history
+        if (tail.prev == null) {
+            // All pointers on the only relevant node
+            // Remember: tail is just the endcap. tail.prev is the "conventional" tail
+            current = tail.prev = newEquation;
         } else {
-            newEquation.prev = tail;
-            current = tail = tail.next = newEquation;
+            // Sandwiches new node between previous newest equation, and the endcap
+            newEquation.prev = tail.prev;
+            current = tail.prev = tail.prev.next = newEquation;
         }
     }
 
-    public static void deleteSelected() {
+    //TODO: Rework
+    public void deleteSelected() {
         int flag = 2;
 
         if (current.prev != null)
@@ -59,27 +60,30 @@ public class History {
         if (flag != 0)
             getPreviousEquation();
         else
-            head = current = null;
+            current = tail;
     }
 
-    public static void moveToNext() {
-        current = current.next == null ? current : current.next;
+    public Boolean moveToNext() {
+        Boolean changed = false;
+        // If at the most recent equation, node doesn't change and method returns false
+        if (current.next != null) {
+            current = current.next;
+            changed = true;
+        }
+        return changed;
     }
 
-    public static void moveToPrev() {
+    public void moveToPrev() {
         current = current.prev == null ? current : current.prev;
     }
 
-    // For testing
-    public static Equation getHead() {
-        return head;
-    }
-
-    public static Equation getCurrent() {
+    // For testing //
+    public Equation getCurrent() {
         return current;
     }
 
-    public static Equation getTail() {
-        return tail;
+    public Equation getTail() {
+        // Returns tail.prev as tail is just an empty endcap j(for the moveToPrev() method)
+        return tail.prev;
     }
 }
