@@ -2,13 +2,12 @@ package com.calcyoulater.storage;
 
 public class History {
 
-    private static Equation head;
     private static Equation current;
     private static Equation tail;
 
     private static History uniqueInstance;
 
-    //Uses singleton design pattern
+    // Uses singleton design pattern
     private History() {
         tail = new Equation(null);
     }
@@ -27,27 +26,24 @@ public class History {
         return current.getNode();
     }
 
-    public void goToHead() {
-        current = head;
-    }
-
     public void goToTail() {
         current = tail;
     }
 
     public void addEquation(Equation newEquation) {
-        //If adding the first equation to the history
-        if (head == null) {
-            //All pointers on the only valuable node
-            //Remember: tail is just the endcap. tail.prev is the "conventional" tail
-            head = current = tail.prev = newEquation;
+        // If adding the first equation to the history
+        if (tail.prev == null) {
+            // All pointers on the only relevant node
+            // Remember: tail is just the endcap. tail.prev is the "conventional" tail
+            current = tail.prev = newEquation;
         } else {
-            //Sandwiches new node between previous newest equation, and the endcap
+            // Sandwiches new node between previous newest equation, and the endcap
             newEquation.prev = tail.prev;
             current = tail.prev = tail.prev.next = newEquation;
         }
     }
 
+    //TODO: Rework
     public void deleteSelected() {
         int flag = 2;
 
@@ -64,12 +60,12 @@ public class History {
         if (flag != 0)
             getPreviousEquation();
         else
-            head = current = null;
+            current = tail;
     }
 
     public Boolean moveToNext() {
         Boolean changed = false;
-        //If at the most recent equation, node doesn't change and method returns false
+        // If at the most recent equation, node doesn't change and method returns false
         if (current.next != null) {
             current = current.next;
             changed = true;
@@ -82,16 +78,12 @@ public class History {
     }
 
     // For testing //
-    public Equation getHead() {
-        return head;
-    }
-
     public Equation getCurrent() {
         return current;
     }
 
     public Equation getTail() {
-        //Returns tail.prev, as tail is just an empty endcap (for the moveToPrev() method)
+        // Returns tail.prev as tail is just an empty endcap j(for the moveToPrev() method)
         return tail.prev;
     }
 }
