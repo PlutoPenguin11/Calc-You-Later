@@ -12,19 +12,25 @@ public class Storage {
     private final static String PROGRAM_NAME = "CalcYouLater";
     private final static String HISTORY_FILE = "history.ser";
     private static ArrayList<Equation> equations = new ArrayList<>();
+    private static Storage uniqueInstance;
 
-    public Storage() {
+    private Storage() {
         if (!folderExists()) {
             createAppDataFolder();
             createFile();
         }
     }
 
-    public static void addNode(Equation newNode) {
+    public static Storage instance() {
+        if (uniqueInstance == null) uniqueInstance = new Storage();
+        return uniqueInstance;
+    }
+
+    public void addNode(Equation newNode) {
         equations.add(newNode);
     }
 
-    public static void serialize() {
+    public void serialize() {
         if (folderExists() && fileExists()) {
             try {
                 FileOutputStream fileOut = new FileOutputStream(getFolderPath() + HISTORY_FILE);
@@ -50,7 +56,7 @@ public class Storage {
         }
     }
 
-    public static ArrayList<Equation> deserialize() {
+    public ArrayList<Equation> deserialize() {
         try {
             FileInputStream filePath = new FileInputStream(getFolderPath() + HISTORY_FILE);
             ObjectInputStream in = new ObjectInputStream(filePath);
