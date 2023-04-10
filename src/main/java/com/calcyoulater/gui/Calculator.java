@@ -69,6 +69,10 @@ public class Calculator extends JFrame {
         actionListenerInit();
         calculatorInit();
 
+        ArrayList<Equation> list = storage.deserialize();
+        for (int i = 0; i < list.size(); i++) {
+             history.addEquation(list.get(i));
+        }
     }
 
     public static Calculator instance() {
