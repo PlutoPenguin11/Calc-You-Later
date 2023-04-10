@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Storage {
     private final static String PROGRAM_NAME = "CalcYouLater";
     private final static String HISTORY_FILE = "history.ser";
-    private ArrayList<Equation> equations = new ArrayList<>();
+    private static ArrayList<Equation> equations = new ArrayList<>();
 
     public Storage() {
         if (!folderExists()) {
@@ -20,7 +20,11 @@ public class Storage {
         }
     }
 
-    public static void serialize(ArrayList<Equation> equations) {
+    public static void addNode(Equation newNode) {
+        equations.add(newNode);
+    }
+
+    public static void serialize() {
         if (folderExists() && fileExists()) {
             try {
                 FileOutputStream fileOut = new FileOutputStream(getFolderPath() + HISTORY_FILE);
@@ -44,22 +48,18 @@ public class Storage {
                 e.printStackTrace();
             }
         }
-
     }
 
     public static ArrayList<Equation> deserialize() {
-        ArrayList<Equation> temp = new ArrayList<>();
-
         try {
             FileInputStream filePath = new FileInputStream(getFolderPath() + HISTORY_FILE);
             ObjectInputStream in = new ObjectInputStream(filePath);
-            temp = (ArrayList<Equation>) in.readObject();
+            equations = (ArrayList<Equation>) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-        return temp;
-
+        return equations;
     }
 
     public static boolean createAppDataFolder() {
