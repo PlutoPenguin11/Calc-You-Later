@@ -59,11 +59,19 @@ public class Calculator extends JFrame {
     private History history = History.instance();
     private String state = "HOME";
 
-    public Calculator() {
+    private static Calculator uniqueInstance;
+
+    private Calculator() {
         $$$setupUI$$$();
         actionListenerInit();
         calculatorInit();
 
+    }
+
+    public static Calculator instance() {
+        if (uniqueInstance == null) 
+                uniqueInstance = new Calculator();
+        return uniqueInstance;
     }
 
     private void actionListenerInit() {
