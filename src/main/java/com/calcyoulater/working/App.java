@@ -6,10 +6,12 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import org.mariuszgromada.math.mxparser.License;
 import com.calcyoulater.gui.Calculator;
 
 public class App {
     public static void main(String[] args) throws IOException {
+        License.iConfirmNonCommercialUse("joelh");
         Calculator c = Calculator.instance();
         App.setIconImage(c,"/calculator_icon.png");
     }

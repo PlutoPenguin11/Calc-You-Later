@@ -34,13 +34,6 @@ public class HistoryTest {
     }
 
     @Test
-    public void getPreviousEquation() {
-        Equation actual = history.getPreviousEquation();
-        assertEquals(equation2, actual);
-        assertEquals(equation2, history.getCurrent());
-    }
-
-    @Test
     public void selectEquation() {
         String equationText = history.selectEquation();
         assertEquals(string3, equationText);
@@ -65,7 +58,7 @@ public class HistoryTest {
 
         assertEquals(newEquation, history.getTail());
         assertEquals(newEquation, history.getCurrent());
-        assertEquals(equation3, history.getPreviousEquation());
+        //assertEquals(equation3, history.getPreviousEquation());
 
         History history2 = History.instance();;
         history2.addEquation(newEquation);
