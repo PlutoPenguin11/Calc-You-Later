@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Locale;
 import com.calcyoulater.storage.Equation;
 import com.calcyoulater.storage.History;
@@ -63,13 +65,16 @@ public class Calculator extends JFrame {
         private static Calculator uniqueInstance;
 
         private Calculator() {
+                loadStorage();
                 $$$setupUI$$$();
                 actionListenerInit();
                 calculatorInit();
-
-                ArrayList<Equation> list = storage.deserialize();
-                for (int i = 0; i < list.size(); i++) {
-                        history.addEquation(list.get(i));
+        }       
+        
+        private void loadStorage() {
+                ArrayList<Equation> list = storage.getEquations();
+                for (Equation eq: list) {
+                        history.addEquation(eq);
                 }
                 history.goToTail();
         }
@@ -81,23 +86,19 @@ public class Calculator extends JFrame {
         }
 
         private void actionListenerInit() {
-                addWindowListener(new java.awt.event.WindowAdapter() {
-                        @Override
-                        public void windowClosing(java.awt.event.WindowEvent e) {
-                                history.save(storage);
-                                storage.serialize();
-                                System.exit(0);
-                        }
-                    });
-
                 enterButton.addActionListener(e -> {
                         switch (this.stateString) {
                                 case "HOME":
                                         Equation eq = new Equation(inputField.getText());
                                         // If string is not empty, adds to history
-                                        if (eq.getNode().length() > 0)
+                                        if (eq.getNode().length() > 0){
                                                 history.addEquation(eq);
                                                 outputTextArea.setText(eq.parse());
+                                                storage.addNode(eq);
+                                                storage.serialize();
+                                        }else{
+                                                outputTextArea.setText("Please enter an equation.");
+                                        }
                                         break;
                                 case "GRAPH":
                                         Grapher g = new Grapher(inputField.getText());
@@ -588,6 +589,7 @@ public class Calculator extends JFrame {
                                                 false));
         }
 
+        // Auto generated code by IntelliJ GUI Builder
         private Font $$$getFont$$$(String fontName, int style, int size, Font currentFont) {
                 if (currentFont == null)
                         return null;
@@ -611,6 +613,7 @@ public class Calculator extends JFrame {
                                 : new FontUIResource(fontWithFallback);
         }
 
+        // Auto generated code by IntelliJ GUI Builder
         public JComponent $$$getRootComponent$$$() {
                 return windowPanel;
         }
@@ -624,5 +627,4 @@ public class Calculator extends JFrame {
                 (this).setVisible(true);
         }
 
-        
 }
