@@ -1,7 +1,5 @@
 package com.calcyoulater.storage;
 
-import com.calcyoulater.storage.Storage;
-
 public class History {
 
     private static Equation current;

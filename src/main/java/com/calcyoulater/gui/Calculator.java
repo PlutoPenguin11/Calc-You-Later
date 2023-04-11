@@ -7,7 +7,6 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
-import javax.swing.tree.ExpandVetoException;
 import java.awt.*;
 import java.util.Locale;
 import com.calcyoulater.storage.Equation;
