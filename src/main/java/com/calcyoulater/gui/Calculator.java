@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Locale;
 import com.calcyoulater.storage.Equation;
 import com.calcyoulater.storage.History;
@@ -57,50 +59,49 @@ public class Calculator extends JFrame {
         private JPanel windowPanel;
         private JLabel modeLabel;
         private JLabel stateLabel;
-        private History history = History.instance();
-        private Storage storage = Storage.instance();
+        private History historyInstance = History.instance();
+        private Storage storageInstance = Storage.instance();
         private String stateString = "HOME";
-        private static Calculator uniqueInstance;
+        private static Calculator calculatorInstance;
 
         private Calculator() {
+                loadStorage();
                 $$$setupUI$$$();
                 actionListenerInit();
                 calculatorInit();
-
-                ArrayList<Equation> list = storage.deserialize();
-                for (int i = 0; i < list.size(); i++) {
-                        history.addEquation(list.get(i));
+        }       
+        
+        private void loadStorage() {
+                ArrayList<Equation> list = storageInstance.getEquations();
+                for (Equation eq: list) {
+                        historyInstance.addEquation(eq);
                 }
-                history.goToTail();
+                historyInstance.goToTail();
         }
 
         public static Calculator instance() {
-                if (uniqueInstance == null)
-                        uniqueInstance = new Calculator();
-                return uniqueInstance;
+                if (calculatorInstance == null)
+                        calculatorInstance = new Calculator();
+                return calculatorInstance;
         }
 
         private void actionListenerInit() {
-                addWindowListener(new java.awt.event.WindowAdapter() {
-                        @Override
-                        public void windowClosing(java.awt.event.WindowEvent e) {
-                                history.save(storage);
-                                storage.serialize();
-                                System.exit(0);
-                        }
-                    });
-
                 enterButton.addActionListener(e -> {
                         switch (this.stateString) {
                                 case "HOME":
                                         Equation eq = new Equation(inputField.getText());
                                         // If string is not empty, adds to history
-                                        if (eq.getNode().length() > 0)
-                                                history.addEquation(eq);
+                                        if (eq.getNode().length() > 0){
+                                                historyInstance.addEquation(eq);
                                                 outputTextArea.setText(eq.parse());
+                                                storageInstance.addNode(eq);
+                                                storageInstance.serialize();
+                                        }else{
+                                                outputTextArea.setText("Please enter an equation.");
+                                        }
                                         break;
                                 case "GRAPH":
-                                        Grapher g = new Grapher(inputField.getText());
+                                                Grapher g = new Grapher(inputField.getText());
                                         break;
                                 case "STATS":
                                         outputTextArea.setText(Statistics.getSummary(inputField.getText()));
@@ -126,18 +127,18 @@ public class Calculator extends JFrame {
                 });
 
                 helpButton.addActionListener(e -> {
-                        Help help = Help.instance();
+                        Help helpInstance = Help.instance();
                 });
 
                 prevButton.addActionListener(e -> {
-                        history.moveToPrev();
-                        inputField.setText(history.selectEquation());
+                        historyInstance.moveToPrev();
+                        inputField.setText(historyInstance.selectEquation());
                 });
 
                 nextButton.addActionListener(e -> {
                         // Checks and only shows next node if currently "viewing" a history node
-                        if (history.moveToNext())
-                                inputField.setText(history.selectEquation());
+                        if (historyInstance.moveToNext())
+                                inputField.setText(historyInstance.selectEquation());
                 });
 
                 equalsButton.addActionListener(e -> inputField.setText(inputField.getText() + "="));
@@ -190,7 +191,7 @@ public class Calculator extends JFrame {
                         inputField.setText("");
                         outputTextArea.setText("");
                         // Clear moves back to most recent node
-                        history.goToTail();
+                        historyInstance.goToTail();
                 });
 
                 deleteButton.addActionListener(e -> {
@@ -588,6 +589,7 @@ public class Calculator extends JFrame {
                                                 false));
         }
 
+        // Auto generated code by IntelliJ GUI Builder
         private Font $$$getFont$$$(String fontName, int style, int size, Font currentFont) {
                 if (currentFont == null)
                         return null;
@@ -611,6 +613,7 @@ public class Calculator extends JFrame {
                                 : new FontUIResource(fontWithFallback);
         }
 
+        // Auto generated code by IntelliJ GUI Builder
         public JComponent $$$getRootComponent$$$() {
                 return windowPanel;
         }
@@ -624,5 +627,4 @@ public class Calculator extends JFrame {
                 (this).setVisible(true);
         }
 
-        
 }
