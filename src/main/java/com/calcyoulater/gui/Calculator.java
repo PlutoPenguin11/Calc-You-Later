@@ -7,10 +7,12 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
+import javax.swing.tree.ExpandVetoException;
 import java.awt.*;
 import java.util.Locale;
 import com.calcyoulater.storage.Equation;
 import com.calcyoulater.storage.History;
+import com.calcyoulater.working.Grapher;
 import com.calcyoulater.storage.Storage;
 import com.calcyoulater.working.Statistics;
 import java.util.ArrayList;
@@ -93,6 +95,7 @@ public class Calculator extends JFrame {
                     outputTextArea.setText(eq.parse());
                     break;
                 case "GRAPH":
+                    Grapher g = new Grapher(inputField.getText());
                     break;
                 case "STATS":
                     outputTextArea.setText(Statistics.getSummary(inputField.getText()));
