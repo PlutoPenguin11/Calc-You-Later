@@ -91,16 +91,5 @@ public class History {
         // method)
         return tail.prev;
     }
-
-    public void save(Storage storage) {
-        current = tail;
-
-        while (current.prev != null) {
-            current = current.prev;
-        }
-
-        do {
-            storage.addNode(current);
-        } while (moveToNext());
-    }
+    
 }
