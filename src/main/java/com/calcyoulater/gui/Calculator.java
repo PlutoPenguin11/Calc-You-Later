@@ -218,6 +218,7 @@ public class Calculator extends JFrame {
                 deleteHistoryButton.addActionListener(e -> {
                         historyInstance = History.newInstance();
                         storageInstance.clearStorage();
+                        inputField.setText("");
                 });
         }
 
