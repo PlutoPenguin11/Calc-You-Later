@@ -171,8 +171,8 @@ public class Statistics {
                 + "Q3: " + quartiles[3] + "\n"
                 + "Maximum: " + quartiles[4] + "\n"
                 + "Mean: " + mean(inputArray) + "\n"
-                + "Standard deviation " + stddev(inputArray) + "\n"
-                + "Variance " + variance(inputArray);
+                + "Standard deviation: " + stddev(inputArray) + "\n"
+                + "Variance: " + variance(inputArray);
 
     }
 
