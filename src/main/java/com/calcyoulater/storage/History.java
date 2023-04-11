@@ -1,10 +1,11 @@
 package com.calcyoulater.storage;
 
+import com.calcyoulater.storage.Storage;
+
 public class History {
 
     private static Equation current;
     private static Equation tail;
-
     private static History uniqueInstance;
 
     // Uses singleton design pattern
@@ -15,6 +16,12 @@ public class History {
     public static History instance() {
         if (uniqueInstance == null)
             uniqueInstance = new History();
+        return uniqueInstance;
+    }
+
+    public static History deleteHistory() {
+        uniqueInstance = new History();
+        current = tail;
         return uniqueInstance;
     }
 
@@ -85,5 +92,17 @@ public class History {
     public Equation getTail() {
         // Returns tail.prev as tail is just an empty endcap j(for the moveToPrev() method)
         return tail.prev;
+    }
+
+    public void save(Storage storage) {
+        current = tail;
+        
+        while(current.prev != null) {
+            current = current.prev;
+        }
+
+        do {
+            storage.addNode(current);
+        } while(moveToNext());
     }
 }
