@@ -48,7 +48,7 @@ public class Grapher {
                 // Create and set up the window.
                 JFrame frame = new JFrame("Calc-You-Later");
                 frame.setLayout(new BorderLayout());
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
                 // chart
                 JPanel chartPanel = new XChartPanel<XYChart>(chart);
