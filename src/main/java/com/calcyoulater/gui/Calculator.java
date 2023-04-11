@@ -197,8 +197,22 @@ public class Calculator extends JFrame {
                 });
 
                 deleteButton.addActionListener(e -> {
-                        if (inputField != null)
+                        if (inputField.getText().equals(historyInstance.selectEquation())) {
+                                historyInstance.deleteSelected();
+                                storageInstance.clearStorage();
+
+                                ArrayList<Equation> list = historyInstance.getList();
+                                for (Equation eq: list) {
+                                        storageInstance.addNode(eq);
+                                }
+
+                                storageInstance.serialize();
+
+                                inputField.setText("");
+                                
+                        } else if (inputField != null) {
                                 inputField.setText(inputField.getText().replaceAll(".$", ""));
+                        }
                 });
 
                 deleteHistoryButton.addActionListener(e -> {

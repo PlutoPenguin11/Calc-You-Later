@@ -1,5 +1,7 @@
 package com.calcyoulater.storage;
 
+import java.util.ArrayList;
+
 public class History {
 
     private static Equation current;
@@ -21,10 +23,6 @@ public class History {
         uniqueInstance = new History();
         current = tail;
         return uniqueInstance;
-    }
-
-    public Equation getPreviousEquation() {
-        return current = current.prev;
     }
 
     public String selectEquation() {
@@ -49,22 +47,18 @@ public class History {
     }
 
     public void deleteSelected() {
-        int flag = 2;
-
-        if (current.prev != null)
-            current.prev.next = current.next;
-        else
-            flag--;
-
-        if (current.next != null)
-            current.next.prev = current.prev;
-        else
-            flag--;
-
-        if (flag != 0)
-            getPreviousEquation();
-        else
+        //Makes sure endcap is never deleted
+        if (current != tail) {
+            if (current.prev != null) {
+                current.prev.next = current.next;
+            } 
+            if (current.next != null) {
+                current.next.prev = current.prev;
+            } else {
+                tail.prev = current.prev;
+            }
             current = tail;
+        }
     }
 
     public Boolean moveToNext() {
@@ -79,6 +73,19 @@ public class History {
 
     public void moveToPrev() {
         current = current.prev == null ? current : current.prev;
+    }
+
+    public ArrayList<Equation> getList() {
+        ArrayList<Equation> list = new ArrayList<>();
+        while(current.prev != null) {
+            current = current.prev;
+        }
+        while(current != null) {
+            list.add(current);
+            current = current.next;
+        }
+        current = tail;
+        return list;
     }
 
     // For testing //
