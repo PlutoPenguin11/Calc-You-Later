@@ -81,6 +81,15 @@ public class Calculator extends JFrame {
         }
 
         private void actionListenerInit() {
+                addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosing(java.awt.event.WindowEvent e) {
+                                history.save(storage);
+                                storage.serialize();
+                                System.exit(0);
+                        }
+                    });
+
                 enterButton.addActionListener(e -> {
                         switch (this.stateString) {
                                 case "HOME":
@@ -615,4 +624,5 @@ public class Calculator extends JFrame {
                 (this).setVisible(true);
         }
 
+        
 }
