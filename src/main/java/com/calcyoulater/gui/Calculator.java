@@ -62,7 +62,7 @@ public class Calculator extends JFrame {
 
     private History history = History.instance();
     private Storage storage = Storage.instance();
-    private String state = "HOME";
+    private String stateString = "HOME";
 
     private static Calculator uniqueInstance;
 
@@ -86,7 +86,7 @@ public class Calculator extends JFrame {
 
     private void actionListenerInit() {
         enterButton.addActionListener(e -> {
-            switch (this.state) {
+            switch (this.stateString) {
                 case "HOME":
                     Equation eq = new Equation(inputField.getText());
                     //If string is not empty, adds to history
@@ -107,19 +107,19 @@ public class Calculator extends JFrame {
 
         homeButton.addActionListener(e -> {
             stateLabel.setText("            Home");
-            this.state = "HOME";
+            this.stateString = "HOME";
         });
 
         graphButton.addActionListener(e -> {
             // TODO: Graphing button functionality
             stateLabel.setText("            Graphing");
-            this.state = "GRAPH";
+            this.stateString = "GRAPH";
         });
 
         statsButton.addActionListener(e -> {
             // TODO: Graphing button functionality
             stateLabel.setText("            Statistics");
-            this.state = "STATS";
+            this.stateString = "STATS";
         });
 
         helpButton.addActionListener(e -> {
