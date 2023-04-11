@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 //TODO: FIX FUCKING MEMORY LEAK HOLY SHIT THIS IS BAD
+//ALSO: CHANGE FOR WINDOWS, AND DON'T USE APPDATA
 public class Storage {
     private final static String PROGRAM_NAME = "CalcYouLater";
     private final static String HISTORY_FILE = "history.ser";
@@ -40,7 +41,7 @@ public class Storage {
     public void serialize() {
         if (folderExists() && fileExists()) {
             try {
-                FileOutputStream fileOut = new FileOutputStream(getFolderPath() + HISTORY_FILE);
+                FileOutputStream fileOut = new FileOutputStream(getFolderPath()+ HISTORY_FILE);
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(equations);
                 out.close();
@@ -65,7 +66,7 @@ public class Storage {
 
     public ArrayList<Equation> deserialize() {
         try {
-            FileInputStream filePath = new FileInputStream(getFolderPath() + HISTORY_FILE);
+            FileInputStream filePath = new FileInputStream(getFolderPath()+ HISTORY_FILE);
             ObjectInputStream in = new ObjectInputStream(filePath);
             equations = (ArrayList<Equation>) in.readObject();
             filePath.close();
@@ -79,10 +80,11 @@ public class Storage {
 
     public static boolean createAppDataFolder() {
         String fileFolder = "";
+        //System.getenv("ProgramFiles");
 
         String os = System.getProperty("os.name").toUpperCase();
         if (os.contains("WIN")) {
-            fileFolder = System.getenv("APPDATA") + "\\" + PROGRAM_NAME;
+            fileFolder = System.getenv("APPDATA")  + PROGRAM_NAME;
         } else if (os.contains("MAC")) {
             fileFolder = System.getProperty("user.home") + "/Library/Application " + "Support" + PROGRAM_NAME;
         } else if (os.contains("NUX")) {
@@ -121,7 +123,7 @@ public class Storage {
 
     private static boolean fileExists() {
         String fileFolder = getFolderPath();
-        File historyFile = new File(fileFolder, HISTORY_FILE);
+        File historyFile = new File(fileFolder+HISTORY_FILE);
         return historyFile.exists();
     }
 
@@ -131,16 +133,16 @@ public class Storage {
     }
 
     private static String getFolderPath() {
-        String defaultOS = System.getenv("APPDATA") + "\\" + PROGRAM_NAME;
+        String defaultOS = System.getenv("APPDATA")  + PROGRAM_NAME;
 
         String os = System.getProperty("os.name").toUpperCase();
 
         if (os.contains("WIN")) {
-            return System.getenv("APPDATA") + "\\" + PROGRAM_NAME;
+            return System.getenv("APPDATA")  + PROGRAM_NAME;
         } else if (os.contains("MAC")) {
             return System.getProperty("user.home") + "/Library/Application Support/" + PROGRAM_NAME;
         } else if (os.contains("NUX")) {
-            return System.getProperty("user.dir") + "/" + PROGRAM_NAME;
+            return System.getProperty("user.dir")  + PROGRAM_NAME;
         } else {
             return defaultOS;
         }

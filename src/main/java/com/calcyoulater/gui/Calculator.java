@@ -97,7 +97,7 @@ public class Calculator extends JFrame {
                                         // If string is not empty, adds to history
                                         if (eq.getNode().length() > 0)
                                                 history.addEquation(eq);
-                                        outputTextArea.setText(eq.parse());
+                                                outputTextArea.setText(eq.parse());
                                         break;
                                 case "GRAPH":
                                         Grapher g = new Grapher(inputField.getText());
