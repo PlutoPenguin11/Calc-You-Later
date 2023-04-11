@@ -30,6 +30,11 @@ public class Storage {
         equations.add(newNode);
     }
 
+    public void clearStorage() {
+        equations.clear();
+        serialize();
+    }
+
     public void serialize() {
         if (folderExists() && fileExists()) {
             try {

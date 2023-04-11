@@ -19,6 +19,12 @@ public class History {
         return uniqueInstance;
     }
 
+    public static History deleteHistory() {
+        uniqueInstance = new History();
+        current = tail;
+        return uniqueInstance;
+    }
+
     public Equation getPreviousEquation() {
         return current = current.prev;
     }

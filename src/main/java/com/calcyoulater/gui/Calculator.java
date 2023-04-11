@@ -73,6 +73,7 @@ public class Calculator extends JFrame {
         for (int i = 0; i < list.size(); i++) {
              history.addEquation(list.get(i));
         }
+        history.goToTail();
     }
 
     public static Calculator instance() {
