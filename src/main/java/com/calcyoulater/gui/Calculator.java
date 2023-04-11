@@ -11,7 +11,9 @@ import java.awt.*;
 import java.util.Locale;
 import com.calcyoulater.storage.Equation;
 import com.calcyoulater.storage.History;
+import com.calcyoulater.storage.Storage;
 import com.calcyoulater.working.Statistics;
+import java.util.ArrayList;
 
 public class Calculator extends JFrame {
     private JButton zeroButton;
@@ -57,6 +59,7 @@ public class Calculator extends JFrame {
     private JLabel stateLabel;
 
     private History history = History.instance();
+    private Storage storage = Storage.instance();
     private String state = "HOME";
 
     private static Calculator uniqueInstance;
@@ -66,6 +69,11 @@ public class Calculator extends JFrame {
         actionListenerInit();
         calculatorInit();
 
+        ArrayList<Equation> list = storage.deserialize();
+        for (int i = 0; i < list.size(); i++) {
+             history.addEquation(list.get(i));
+        }
+        history.goToTail();
     }
 
     public static Calculator instance() {
