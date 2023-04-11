@@ -63,17 +63,18 @@ public class Calculator extends JFrame {
         private Storage storageInstance = Storage.instance();
         private String stateString = "HOME";
         private static Calculator calculatorInstance;
+        private JButton deleteHistoryButton;
 
         private Calculator() {
                 loadStorage();
                 $$$setupUI$$$();
                 actionListenerInit();
                 calculatorInit();
-        }       
-        
+        }
+
         private void loadStorage() {
                 ArrayList<Equation> list = storageInstance.getEquations();
-                for (Equation eq: list) {
+                for (Equation eq : list) {
                         historyInstance.addEquation(eq);
                 }
                 historyInstance.goToTail();
@@ -86,22 +87,25 @@ public class Calculator extends JFrame {
         }
 
         private void actionListenerInit() {
+                deleteHistoryButton.addActionListener(e->{
+                        //TODO:
+                });
                 enterButton.addActionListener(e -> {
                         switch (this.stateString) {
                                 case "HOME":
                                         Equation eq = new Equation(inputField.getText());
                                         // If string is not empty, adds to history
-                                        if (eq.getNode().length() > 0){
+                                        if (eq.getNode().length() > 0) {
                                                 historyInstance.addEquation(eq);
                                                 outputTextArea.setText(eq.parse());
                                                 storageInstance.addNode(eq);
                                                 storageInstance.serialize();
-                                        }else{
+                                        } else {
                                                 outputTextArea.setText("Please enter an equation.");
                                         }
                                         break;
                                 case "GRAPH":
-                                                Grapher g = new Grapher(inputField.getText());
+                                        Grapher g = new Grapher(inputField.getText());
                                         break;
                                 case "STATS":
                                         outputTextArea.setText(Statistics.getSummary(inputField.getText()));
@@ -489,6 +493,17 @@ public class Calculator extends JFrame {
                                                 GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED,
                                                 null,
                                                 new Dimension(344, 20), null, 0, false));
+                deleteHistoryButton = new JButton();
+                deleteHistoryButton.setText("DELETE HISTORY");
+                deleteHistoryButton.setForeground(new Color(255, 0, 0));
+                deleteHistoryButton.setBackground(new Color(100, 0, 0));
+                mainPanel.add(deleteHistoryButton,
+                                new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER,
+                                                GridConstraints.FILL_HORIZONTAL,
+                                                GridConstraints.SIZEPOLICY_CAN_SHRINK
+                                                                | GridConstraints.SIZEPOLICY_CAN_GROW,
+                                                GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+
                 homeButton = new JButton();
                 homeButton.setText("Home");
                 toolBar1.add(homeButton);
@@ -621,7 +636,7 @@ public class Calculator extends JFrame {
         public void calculatorInit() {
                 (this).setTitle("Calc-You-Later!");
                 (this).setContentPane(this.windowPanel);
-                (this).setSize(700, 500);
+                (this).setSize(500, 500);
                 (this).setLocationRelativeTo(null);
                 (this).setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 (this).setVisible(true);
