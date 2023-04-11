@@ -209,6 +209,7 @@ public class Calculator extends JFrame {
                                 storageInstance.serialize();
 
                                 inputField.setText("");
+                                outputTextArea.setText("");
                                 
                         } else if (inputField != null) {
                                 inputField.setText(inputField.getText().replaceAll(".$", ""));
@@ -219,6 +220,7 @@ public class Calculator extends JFrame {
                         historyInstance = History.newInstance();
                         storageInstance.clearStorage();
                         inputField.setText("");
+                        outputTextArea.setText("");
                 });
         }
 
