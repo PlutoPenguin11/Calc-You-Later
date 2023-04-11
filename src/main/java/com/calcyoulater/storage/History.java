@@ -17,7 +17,7 @@ public class History {
         return uniqueInstance;
     }
 
-    public static History deleteHistory() {
+    public static History newInstance() {
         uniqueInstance = new History();
         current = tail;
         return uniqueInstance;
