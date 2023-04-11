@@ -59,10 +59,10 @@ public class Calculator extends JFrame {
         private JPanel windowPanel;
         private JLabel modeLabel;
         private JLabel stateLabel;
-        private History history = History.instance();
-        private Storage storage = Storage.instance();
+        private History historyInstance = History.instance();
+        private Storage storageInstance = Storage.instance();
         private String stateString = "HOME";
-        private static Calculator uniqueInstance;
+        private static Calculator calculatorInstance;
 
         private Calculator() {
                 loadStorage();
@@ -72,17 +72,17 @@ public class Calculator extends JFrame {
         }       
         
         private void loadStorage() {
-                ArrayList<Equation> list = storage.getEquations();
+                ArrayList<Equation> list = storageInstance.getEquations();
                 for (Equation eq: list) {
-                        history.addEquation(eq);
+                        historyInstance.addEquation(eq);
                 }
-                history.goToTail();
+                historyInstance.goToTail();
         }
 
         public static Calculator instance() {
-                if (uniqueInstance == null)
-                        uniqueInstance = new Calculator();
-                return uniqueInstance;
+                if (calculatorInstance == null)
+                        calculatorInstance = new Calculator();
+                return calculatorInstance;
         }
 
         private void actionListenerInit() {
@@ -92,16 +92,16 @@ public class Calculator extends JFrame {
                                         Equation eq = new Equation(inputField.getText());
                                         // If string is not empty, adds to history
                                         if (eq.getNode().length() > 0){
-                                                history.addEquation(eq);
+                                                historyInstance.addEquation(eq);
                                                 outputTextArea.setText(eq.parse());
-                                                storage.addNode(eq);
-                                                storage.serialize();
+                                                storageInstance.addNode(eq);
+                                                storageInstance.serialize();
                                         }else{
                                                 outputTextArea.setText("Please enter an equation.");
                                         }
                                         break;
                                 case "GRAPH":
-                                        Grapher g = new Grapher(inputField.getText());
+                                                Grapher g = new Grapher(inputField.getText());
                                         break;
                                 case "STATS":
                                         outputTextArea.setText(Statistics.getSummary(inputField.getText()));
@@ -127,18 +127,18 @@ public class Calculator extends JFrame {
                 });
 
                 helpButton.addActionListener(e -> {
-                        Help help = Help.instance();
+                        Help helpInstance = Help.instance();
                 });
 
                 prevButton.addActionListener(e -> {
-                        history.moveToPrev();
-                        inputField.setText(history.selectEquation());
+                        historyInstance.moveToPrev();
+                        inputField.setText(historyInstance.selectEquation());
                 });
 
                 nextButton.addActionListener(e -> {
                         // Checks and only shows next node if currently "viewing" a history node
-                        if (history.moveToNext())
-                                inputField.setText(history.selectEquation());
+                        if (historyInstance.moveToNext())
+                                inputField.setText(historyInstance.selectEquation());
                 });
 
                 equalsButton.addActionListener(e -> inputField.setText(inputField.getText() + "="));
@@ -191,7 +191,7 @@ public class Calculator extends JFrame {
                         inputField.setText("");
                         outputTextArea.setText("");
                         // Clear moves back to most recent node
-                        history.goToTail();
+                        historyInstance.goToTail();
                 });
 
                 deleteButton.addActionListener(e -> {
