@@ -30,7 +30,6 @@ public class Grapher {
         try {
             parseFunction();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -38,21 +37,16 @@ public class Grapher {
 
             @Override
             public void run() {
-
-                // Create and set up the window.
                 JFrame frame = new JFrame("Calc-You-Later");
                 frame.setLayout(new BorderLayout());
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-                // chart
                 JPanel chartPanel = new XChartPanel<XYChart>(chart);
                 frame.add(chartPanel, BorderLayout.CENTER);
 
-                // label
                 JLabel label = new JLabel("Graph", SwingConstants.CENTER);
                 frame.add(label, BorderLayout.SOUTH);
 
-                // Display the window.
                 frame.pack();
                 frame.setVisible(true);
             }
