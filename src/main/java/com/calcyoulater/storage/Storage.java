@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+//TODO: FIX FUCKING MEMORY LEAK HOLY SHIT THIS IS BAD
 public class Storage {
     private final static String PROGRAM_NAME = "CalcYouLater";
     private final static String HISTORY_FILE = "history.ser";
