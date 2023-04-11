@@ -1,24 +1,16 @@
 package com.calcyoulater.working;
 
-import java.util.Vector;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.awt.BorderLayout;
 import java.io.IOException;
-
 import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import org.mariuszgromada.math.mxparser.*;
-
-import com.calcyoulater.storage.Equation;
 
 public class Grapher {
     private String function = "";
@@ -36,7 +28,6 @@ public class Grapher {
         try {
             parseFunction();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

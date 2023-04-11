@@ -1,7 +1,8 @@
 package com.calcyoulater.working;
 
 public class Statistics {
-    private Statistics() {}
+    private Statistics() {
+    }
 
     public static double mean(double[] input) {
         double sum = 0;

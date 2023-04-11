@@ -1,7 +1,5 @@
 package com.calcyoulater.storage;
 
-import com.calcyoulater.storage.Storage;
-
 public class History {
 
     private static Equation current;
@@ -50,7 +48,6 @@ public class History {
         }
     }
 
-    //TODO: Rework
     public void deleteSelected() {
         int flag = 2;
 
@@ -90,19 +87,20 @@ public class History {
     }
 
     public Equation getTail() {
-        // Returns tail.prev as tail is just an empty endcap j(for the moveToPrev() method)
+        // Returns tail.prev as tail is just an empty endcap j(for the moveToPrev()
+        // method)
         return tail.prev;
     }
 
     public void save(Storage storage) {
         current = tail;
-        
-        while(current.prev != null) {
+
+        while (current.prev != null) {
             current = current.prev;
         }
 
         do {
             storage.addNode(current);
-        } while(moveToNext());
+        } while (moveToNext());
     }
 }

@@ -22,7 +22,8 @@ public class Storage {
     }
 
     public static Storage instance() {
-        if (uniqueInstance == null) uniqueInstance = new Storage();
+        if (uniqueInstance == null)
+            uniqueInstance = new Storage();
         return uniqueInstance;
     }
 
