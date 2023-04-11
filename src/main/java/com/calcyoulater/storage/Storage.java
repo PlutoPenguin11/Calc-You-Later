@@ -67,6 +67,8 @@ public class Storage {
             FileInputStream filePath = new FileInputStream(getFolderPath() + HISTORY_FILE);
             ObjectInputStream in = new ObjectInputStream(filePath);
             equations = (ArrayList<Equation>) in.readObject();
+            filePath.close();
+            in.close();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
