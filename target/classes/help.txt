@@ -5,10 +5,10 @@ Home: Pressing the Home button in the toolbar will allow you to calculate arithm
 Expression Examples:
 
 Arithmetic Expressions:
-Input: 1+1 		Output: 2
-Input: sqrt(4)		Output: 2
-Input: (3*3) -1 		Output: 8
-Input: 3(2/3)-1 	Output: 1
+Input: 1+1           Output: 2
+Input: sqrt(4)      Output: 2
+Input: (3*3) -1     Output: 8
+Input: 3(2/3)-1     Output: 1
 ...
 
 Trigonometric Expressions:
