@@ -123,16 +123,25 @@ public class Calculator extends JFrame {
 
                 homeButton.addActionListener(e -> {
                         stateLabel.setText("            Home");
+                        if (inputField.getText().contains("f(x)")) {
+                                inputField.setText("");
+                                historyInstance.goToTail();
+                        }
                         this.stateString = "HOME";
                 });
 
                 graphButton.addActionListener(e -> {
                         stateLabel.setText("            Graphing");
+                        inputField.setText("f(x)=");
                         this.stateString = "GRAPH";
                 });
 
                 statsButton.addActionListener(e -> {
                         stateLabel.setText("            Statistics");
+                        if (inputField.getText().contains("f(x)")) {
+                                inputField.setText("");
+                                historyInstance.goToTail();
+                        }
                         this.stateString = "STATS";
                 });
 
