@@ -90,7 +90,11 @@ public class Calculator extends JFrame {
                                 case "HOME":
                                         Equation eq = new Equation(inputField.getText());
                                         // If string is not empty, adds to history
-                                        if (eq.getNode().length() > 0) {
+                                        if (eq.getNode().equals("Penguin")) {
+                                                outputTextArea.setText("You pengWIN!!!");
+                                        } else if (eq.getNode().equals("58008")) {
+                                                outputTextArea.setText("You win, I guess");
+                                        } else if (eq.getNode().length() > 0) {
                                                 historyInstance.addEquation(eq);
                                                 outputTextArea.setText(eq.parse());
                                                 storageInstance.addNode(eq);
