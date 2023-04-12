@@ -1,6 +1,9 @@
 package com.calcyoulater;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.*;
 import com.calcyoulater.storage.Equation;
@@ -18,7 +21,7 @@ public class HistoryTest {
 
     @BeforeEach
     public void setUp() {
-        history = History.instance();;
+        history = History.instance();
 
         string1 = "cos(45)";
         string2 = "1+3-2";
@@ -31,6 +34,12 @@ public class HistoryTest {
         history.addEquation(equation1);
         history.addEquation(equation2);
         history.addEquation(equation3);
+    }
+
+    @Test
+    public void instance() {
+        History history2 = History.instance();
+        assertEquals(history, history2);
     }
 
     @Test
@@ -112,5 +121,14 @@ public class HistoryTest {
         history.moveToNext();
         current = history.getCurrent();
         assertEquals(equation3, current);
+    }
+
+    @Test
+    public void getList() {
+        ArrayList<Equation> list = history.getList();
+
+        assertEquals(equation1, list.get(0));
+        assertEquals(equation2, list.get(1));
+        assertEquals(equation3, list.get(2));
     }
 }
