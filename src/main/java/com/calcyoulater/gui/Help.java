@@ -31,8 +31,11 @@ public class Help extends JFrame {
     private JPanel textPanel;
 
     public static Help instance() {
-        if (uniqueInstance == null)
+        
+        if (uniqueInstance == null){
             uniqueInstance = new Help();
+        }
+        uniqueInstance.setVisible(true);
         return uniqueInstance;
     }
 
