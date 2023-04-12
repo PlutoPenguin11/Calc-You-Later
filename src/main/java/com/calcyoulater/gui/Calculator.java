@@ -90,7 +90,7 @@ public class Calculator extends JFrame {
                                 case "HOME":
                                         Equation eq = new Equation(inputField.getText());
                                         // If string is not empty, adds to history
-                                        if (eq.getNode().equals("Penguin")) {
+                                        if (eq.getNode().equalsIgnoreCase("Penguin")) {
                                                 outputTextArea.setText("You pengWIN!!!");
                                         } else if (eq.getNode().equals("58008")) {
                                                 outputTextArea.setText("You win, I guess");
