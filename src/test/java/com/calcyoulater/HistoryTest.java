@@ -1,6 +1,9 @@
 package com.calcyoulater;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.*;
 import com.calcyoulater.storage.Equation;
@@ -18,7 +21,7 @@ public class HistoryTest {
 
     @BeforeEach
     public void setUp() {
-        history = History.instance();;
+        history = History.instance();
 
         string1 = "cos(45)";
         string2 = "1+3-2";
@@ -34,16 +37,16 @@ public class HistoryTest {
     }
 
     @Test
+    public void instance() {
+        History history2 = History.instance();
+        assertEquals(history, history2);
+    }
+
+    @Test
     public void selectEquation() {
         String equationText = history.selectEquation();
         assertEquals(string3, equationText);
     }
-
-    /*@Test
-    public void goToHead() {
-        history.goToHead();
-        assertEquals(equation1, history.getHead());
-    }*/
 
     @Test
     public void goToTail() {
@@ -70,40 +73,23 @@ public class HistoryTest {
     @Test
     public void deleteSelected() {
         assertEquals(equation3, history.getCurrent());
-       
-        history.deleteSelected();
-        assertEquals(equation2, history.getCurrent());
 
         history.deleteSelected();
-        assertEquals(equation1, history.getCurrent());
+        assertEquals(equation2, history.getTail());
+        history.deleteSelected();
+        history.moveToPrev();
 
         history.deleteSelected();
-        assertEquals(null, history.getCurrent());
+        assertEquals(equation1, history.getTail());
+        history.deleteSelected();
+        history.moveToPrev();
     }
-
-    /*@Test
-    public void moveToNext() {
-        Equation current = history.getHead();
-        history.goToHead();
-        assertEquals(equation1, current);
-
-        history.moveToNext();
-        current = history.getCurrent();
-        assertEquals(equation2, current);
-
-        history.moveToNext();
-        current = history.getCurrent();
-        assertEquals(equation3, current);
-
-        history.moveToNext();
-        current = history.getCurrent();
-        assertEquals(equation3, current);
-    }*/
 
     @Test
     public void moveToPrev() {
         Equation current = history.getTail();
         history.goToTail();
+        history.moveToPrev();
         assertEquals(equation3, current);
 
         history.moveToPrev();
@@ -113,9 +99,36 @@ public class HistoryTest {
         history.moveToPrev();
         current = history.getCurrent();
         assertEquals(equation1, current);
+    }
 
-        history.moveToPrev();
-        current = history.getCurrent();
+    @Test
+    public void moveToNext() {
+        for (int i = 0; i < 3; i++) {
+            history.moveToPrev();
+        }
+        Equation current = history.getCurrent();
+        
         assertEquals(equation1, current);
+
+        history.moveToNext();
+        current = history.getCurrent();
+        assertEquals(equation2, current);
+
+        history.moveToNext();
+        current = history.getCurrent();
+        assertEquals(equation3, current);
+
+        history.moveToNext();
+        current = history.getCurrent();
+        assertEquals(equation3, current);
+    }
+
+    @Test
+    public void getList() {
+        ArrayList<Equation> list = history.getList();
+
+        assertEquals(equation1, list.get(0));
+        assertEquals(equation2, list.get(1));
+        assertEquals(equation3, list.get(2));
     }
 }
