@@ -64,15 +64,21 @@ public class HistoryTest {
     @Test
     public void deleteSelected() {
         assertEquals(equation3, history.getCurrent());
-       
-        history.deleteSelected();
-        assertEquals(equation2, history.getCurrent());
 
         history.deleteSelected();
-        assertEquals(equation1, history.getCurrent());
+        assertEquals(equation2, history.getTail());
+        history.deleteSelected();
+        history.moveToPrev();
 
         history.deleteSelected();
-        assertEquals(null, history.getCurrent());
+        assertEquals(equation1, history.getTail());
+        history.deleteSelected();
+        history.moveToPrev();
+
+        history.deleteSelected();
+        assertEquals(null, history.getTail());
+        history.deleteSelected();
+        history.moveToPrev();
     }
 
     @Test

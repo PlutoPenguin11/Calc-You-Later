@@ -94,7 +94,7 @@ public class History {
     }
 
     public Equation getTail() {
-        // Returns tail.prev as tail is just an empty endcap j(for the moveToPrev()
+        // Returns tail.prev as tail is just an empty endcap (for the moveToPrev()
         // method)
         return tail.prev;
     }
