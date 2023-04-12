@@ -2,6 +2,9 @@ package com.calcyoulater.storage;
 
 import java.util.ArrayList;
 
+/*
+ * @author Joshua Pokorzynski
+ */
 public class History {
 
     private static Equation current;

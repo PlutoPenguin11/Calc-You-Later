@@ -14,6 +14,10 @@ import com.calcyoulater.storage.Storage;
 import com.calcyoulater.working.Statistics;
 import java.util.ArrayList;
 
+/*
+ * @author Joel Halkey
+ * @author Joshua Pokorzynski
+ */
 public class Calculator extends JFrame {
         private JButton zeroButton;
         private JButton decimalButton;

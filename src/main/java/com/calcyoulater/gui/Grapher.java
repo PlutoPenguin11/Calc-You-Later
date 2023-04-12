@@ -12,6 +12,9 @@ import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import org.mariuszgromada.math.mxparser.*;
 
+/*
+ * @author Jonathon Esbri
+ */
 public class Grapher {
     private String function = "";
     private double lower = -50.0;

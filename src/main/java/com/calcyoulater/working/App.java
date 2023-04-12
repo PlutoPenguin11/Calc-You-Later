@@ -9,6 +9,9 @@ import javax.imageio.ImageIO;
 import org.mariuszgromada.math.mxparser.License;
 import com.calcyoulater.gui.Calculator;
 
+/*
+ * @author Joel Halkey
+ */
 public class App {
     public static void main(String[] args) throws IOException {
         License.iConfirmNonCommercialUse("joelh");

@@ -1,5 +1,8 @@
 package com.calcyoulater.working;
 
+/*
+ * @author William Jenkins
+ */
 public class Statistics {
     private Statistics() {
     }

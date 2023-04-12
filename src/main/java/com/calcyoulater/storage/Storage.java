@@ -7,6 +7,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+/*
+ * @author Joel Halkey
+ * @author Joshua Pokorzynski
+ */
 public class Storage {
     private final static String HISTORY_FILE_PATH = "src/main/resources/history.ser";
     private ArrayList<Equation> equations = new ArrayList<>();
