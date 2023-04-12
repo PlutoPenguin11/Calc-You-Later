@@ -1,121 +1,47 @@
-THIS IS A TEST 1
-THIS IS A TEST 
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST 10
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST 20 
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST 30
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST 40
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST 50
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST 60
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST 70
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST 80
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST 90
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST 100
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST 110
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS A TEST
-THIS IS NO LONGER A TEST 120
+Help Text for Calc-You-Later!
 
+Home: Pressing the Home button in the toolbar will allow you to calculate arithmetic and trigonometric expressions by typing in expressions and hitting the enter button.
+
+Expression Examples:
+
+Arithmetic Expressions:
+Input: 1+1 		Output: 2
+Input: sqrt(4)		Output: 2
+Input: (3*3) -1 		Output: 8
+Input: 3(2/3)-1 	Output: 1
+...
+
+Trigonometric Expressions:
+Input: sin(3.14159)	Output: 0
+Input: cos(3.14159)	Output: -1
+...
+
+Note: Implied multiplication and parentheses work as expected.
+
+Graphing: Pressing the graphing button in the toolbar will allow you to graph functions.
+To graph an equation, you have to type "f(x)=" before you write the expression.
+
+Graphing Examples:
+
+Input: f(x) = x
+Input: f(x) = x^2
+Input: f(x) = 2^x
+...
+
+Statistics: Pressing the Statistics button in the toolbar will allow you to process a data set by entering a data set and pressing enter.
+
+Statistics Examples: 
+
+Input: 1,2,3,4,5
+
+Output:
+
+Sample size: 5
+Minimum: 1.0
+Q1: 2.0
+Median: 3.0
+Q3: 4.0
+Maximum: 5.0
+Mean: 3.0
+Standard deviation: 1.4142135623730951
+Variance: 2.0
