@@ -66,6 +66,7 @@ public class Calculator extends JFrame {
         private static Calculator calculatorInstance;
         private JButton deleteHistoryButton;
 
+        //Using singleton pattern
         private Calculator() {
                 loadStorage();
                 $$$setupUI$$$();

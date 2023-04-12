@@ -16,6 +16,7 @@ public class Storage {
     private ArrayList<Equation> equations = new ArrayList<>();
     private static Storage uniqueInstance;
 
+    //Using singleton pattern
     private Storage() {
         this.deserialize();
     }

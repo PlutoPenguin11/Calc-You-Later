@@ -20,6 +20,7 @@ public class Help extends JFrame {
 
     private static Help uniqueInstance;
 
+    //Using singleton pattern
     private Help() {
         $$$setupUI$$$();
         helpInit();

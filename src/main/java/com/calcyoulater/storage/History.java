@@ -16,6 +16,7 @@ public class History {
         tail = new Equation(null);
     }
 
+    
     public static History instance() {
         if (uniqueInstance == null)
             uniqueInstance = new History();
