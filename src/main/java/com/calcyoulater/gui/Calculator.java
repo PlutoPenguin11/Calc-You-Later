@@ -653,7 +653,7 @@ public class Calculator extends JFrame {
         public void calculatorInit() {
                 (this).setTitle("Calc-You-Later!");
                 (this).setContentPane(this.windowPanel);
-                (this).setSize(500, 500);
+                (this).setSize(500, 700);
                 (this).setLocationRelativeTo(null);
                 (this).setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 (this).setVisible(true);
