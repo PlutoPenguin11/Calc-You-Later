@@ -92,7 +92,7 @@ public class Calculator extends JFrame {
                                         // If string is not empty, adds to history
                                         if (eq.getNode().equalsIgnoreCase("Penguin")) {
                                                 outputTextArea.setText("You pengWIN!!!");
-                                        } else if (eq.getNode().equals("58008")) {
+                                        } else if (eq.getNode().equals("5318008")) {
                                                 outputTextArea.setText("You win, I guess");
                                         } else if (eq.getNode().length() > 0) {
                                                 historyInstance.addEquation(eq);
