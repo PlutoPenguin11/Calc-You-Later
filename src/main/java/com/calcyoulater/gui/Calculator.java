@@ -89,16 +89,18 @@ public class Calculator extends JFrame {
                         switch (this.stateString) {
                                 case "HOME":
                                         Equation eq = new Equation(inputField.getText());
-                                        // If string is not empty, adds to history
+                                        //Win conditions
                                         if (eq.getNode().equalsIgnoreCase("Penguin")) {
                                                 outputTextArea.setText("You pengWIN!!!");
                                         } else if (eq.getNode().equals("5318008")) {
                                                 outputTextArea.setText("I guess you win?");
+                                        //Normal case: If string is not empty, adds to history
                                         } else if (eq.getNode().length() > 0) {
                                                 historyInstance.addEquation(eq);
                                                 outputTextArea.setText(eq.parse());
                                                 storageInstance.addNode(eq);
                                                 storageInstance.serialize();
+                                        //No equation entered
                                         } else {
                                                 outputTextArea.setText("Please enter an equation.");
                                         }
@@ -203,10 +205,12 @@ public class Calculator extends JFrame {
                                 storageInstance.clearStorage();
 
                                 ArrayList<Equation> list = historyInstance.getList();
+                                //Adds remaining equations back to storage
                                 for (Equation eq: list) {
                                         storageInstance.addNode(eq);
                                 }
 
+                                //Finalizes new storage list
                                 storageInstance.serialize();
 
                                 inputField.setText("");

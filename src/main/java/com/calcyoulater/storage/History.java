@@ -19,12 +19,6 @@ public class History {
         return uniqueInstance;
     }
 
-    public static History newInstance() {
-        uniqueInstance = new History();
-        current = tail;
-        return uniqueInstance;
-    }
-
     public String selectEquation() {
         return current.getNode();
     }
@@ -47,16 +41,18 @@ public class History {
     }
 
     public void deleteSelected() {
-        //Makes sure endcap is never deleted
+        // Makes sure endcap is never deleted
         if (current != tail) {
             if (current.prev != null) {
                 current.prev.next = current.next;
-            } 
+            }
             if (current.next != null) {
                 current.next.prev = current.prev;
             } else {
+                // Since last equation can't link back to endcap
                 tail.prev = current.prev;
             }
+            // Resets back to beginning for user
             current = tail;
         }
     }
@@ -75,17 +71,27 @@ public class History {
         current = current.prev == null ? current : current.prev;
     }
 
+    // Returns arraylist of all current nodes in history
     public ArrayList<Equation> getList() {
         ArrayList<Equation> list = new ArrayList<>();
-        while(current.prev != null) {
+        // Goes to head
+        while (current.prev != null) {
             current = current.prev;
         }
-        while(current != null) {
+        // Fills list
+        while (current != null) {
             list.add(current);
             current = current.next;
         }
+        // Resets to endcap for user
         current = tail;
         return list;
+    }
+
+    public static History newInstance() {
+        uniqueInstance = new History();
+        current = tail;
+        return uniqueInstance;
     }
 
     // For testing //
@@ -98,5 +104,5 @@ public class History {
         // method)
         return tail.prev;
     }
-    
+
 }
