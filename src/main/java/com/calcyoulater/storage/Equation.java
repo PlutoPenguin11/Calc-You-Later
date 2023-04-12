@@ -6,6 +6,8 @@ import org.mariuszgromada.math.mxparser.*;
 
 /*
  * @author Joshua Pokorzynski
+ * @author Joel Halkey
+ * @author Jonathon Esbri
  */
 public class Equation implements Serializable {
 
