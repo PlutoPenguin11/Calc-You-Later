@@ -75,25 +75,6 @@ public class HistoryTest {
         assertEquals(null, history.getCurrent());
     }
 
-    /*@Test
-    public void moveToNext() {
-        Equation current = history.getHead();
-        history.goToHead();
-        assertEquals(equation1, current);
-
-        history.moveToNext();
-        current = history.getCurrent();
-        assertEquals(equation2, current);
-
-        history.moveToNext();
-        current = history.getCurrent();
-        assertEquals(equation3, current);
-
-        history.moveToNext();
-        current = history.getCurrent();
-        assertEquals(equation3, current);
-    }*/
-
     @Test
     public void moveToPrev() {
         Equation current = history.getTail();
@@ -112,5 +93,27 @@ public class HistoryTest {
         history.moveToPrev();
         current = history.getCurrent();
         assertEquals(equation1, current);
+    }
+
+    @Test
+    public void moveToNext() {
+        for (int i = 0; i < 3; i++) {
+            history.moveToPrev();
+        }
+        Equation current = history.getCurrent();
+        
+        assertEquals(equation1, current);
+
+        history.moveToNext();
+        current = history.getCurrent();
+        assertEquals(equation2, current);
+
+        history.moveToNext();
+        current = history.getCurrent();
+        assertEquals(equation3, current);
+
+        history.moveToNext();
+        current = history.getCurrent();
+        assertEquals(equation3, current);
     }
 }
