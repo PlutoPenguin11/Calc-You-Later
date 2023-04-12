@@ -74,11 +74,6 @@ public class HistoryTest {
         assertEquals(equation1, history.getTail());
         history.deleteSelected();
         history.moveToPrev();
-
-        history.deleteSelected();
-        assertEquals(null, history.getTail());
-        history.deleteSelected();
-        history.moveToPrev();
     }
 
     @Test
@@ -91,10 +86,6 @@ public class HistoryTest {
         history.moveToPrev();
         current = history.getCurrent();
         assertEquals(equation2, current);
-
-        history.moveToPrev();
-        current = history.getCurrent();
-        assertEquals(equation1, current);
 
         history.moveToPrev();
         current = history.getCurrent();

@@ -1,4 +1,4 @@
-package com.calcyoulater.working;
+package com.calcyoulater.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
