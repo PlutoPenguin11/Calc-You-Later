@@ -39,12 +39,6 @@ public class HistoryTest {
         assertEquals(string3, equationText);
     }
 
-    /*@Test
-    public void goToHead() {
-        history.goToHead();
-        assertEquals(equation1, history.getHead());
-    }*/
-
     @Test
     public void goToTail() {
         history.goToTail();
@@ -104,6 +98,7 @@ public class HistoryTest {
     public void moveToPrev() {
         Equation current = history.getTail();
         history.goToTail();
+        history.moveToPrev();
         assertEquals(equation3, current);
 
         history.moveToPrev();
