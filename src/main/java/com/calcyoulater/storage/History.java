@@ -8,12 +8,12 @@ import java.util.ArrayList;
 public class History {
 
     private static Equation current;
-    private static Equation tail;
+    private static Equation endcap;
     private static History uniqueInstance;
 
     // Uses singleton design pattern
     private History() {
-        tail = new Equation(null);
+        endcap = new Equation(null);
     }
 
     
@@ -23,30 +23,35 @@ public class History {
         return uniqueInstance;
     }
 
+    public void deleteHistory() {
+        endcap.prev = null;
+        current = endcap;
+    }
+
     public String selectEquation() {
         return current.getNode();
     }
 
     public void goToTail() {
-        current = tail;
+        current = endcap;
     }
 
     public void addEquation(Equation newEquation) {
         // If adding the first equation to the history
-        if (tail.prev == null) {
+        if (endcap.prev == null) {
             // All pointers on the only relevant node
             // Remember: tail is just the endcap. tail.prev is the "conventional" tail
-            current = tail.prev = newEquation;
+            current = endcap.prev = newEquation;
         } else {
             // Sandwiches new node between previous newest equation, and the endcap
-            newEquation.prev = tail.prev;
-            current = tail.prev = tail.prev.next = newEquation;
+            newEquation.prev = endcap.prev;
+            current = endcap.prev = endcap.prev.next = newEquation;
         }
     }
 
     public void deleteSelected() {
         // Makes sure endcap is never deleted
-        if (current != tail) {
+        if (current != endcap) {
             if (current.prev != null) {
                 current.prev.next = current.next;
             }
@@ -54,10 +59,10 @@ public class History {
                 current.next.prev = current.prev;
             } else {
                 // Since last equation can't link back to endcap
-                tail.prev = current.prev;
+                endcap.prev = current.prev;
             }
             // Resets back to beginning for user
-            current = tail;
+            current = endcap;
         }
     }
 
@@ -88,14 +93,8 @@ public class History {
             current = current.next;
         }
         // Resets to endcap for user
-        current = tail;
+        current = endcap;
         return list;
-    }
-
-    public static History newInstance() {
-        uniqueInstance = new History();
-        current = tail;
-        return uniqueInstance;
     }
 
     // For testing //
@@ -104,8 +103,8 @@ public class History {
     }
 
     public Equation getTail() {
-        // Returns tail.prev as tail is just an empty endcap (for the moveToPrev() method)
-        return tail.prev;
+        // Returns most recent equation
+        return endcap.prev;
     }
 
 }
